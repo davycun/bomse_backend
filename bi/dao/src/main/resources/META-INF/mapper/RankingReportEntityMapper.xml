@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cii.bomse.bi.entity.RankingReportEntity">
+
+    <resultMap id="BaseResultMap" type="com.cii.bomse.bi.entity.RankingReportEntity">
+        <result column="id" property="id" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="count" property="count" jdbcType="NUMERIC" javaType="java.lang.Float"/>
+        <result column="avatar" property="avatar" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="name" property="name" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="owner_dept_name" property="ownerDeptName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+    </resultMap>
+
+    <!-- 根据原生Sql查询记录 -->
+    <select id="selectByNativeSql" parameterType="string" resultMap="BaseResultMap">
+        ${value}
+    </select>
+
+    <!-- 根据原生SQL查询单条记录-->
+    <select id="selectOneByNativeSql" parameterType="string" resultMap="BaseResultMap">
+        ${value}
+    </select>
+
+    <!-- 根据原生Sql统计数量 -->
+    <select id="countByNativeSql" parameterType="string" resultType="int">
+        ${value}
+    </select>
+
+    <!-- 通用脚本查询条件 -->
+    <sql id="selectSql">
+        <trim prefix="where" prefixOverrides="AND|OR">
+
+            <!--公用条件-->
+            <if test="createTimeStart != null">
+                AND t.create_time <![CDATA[ >= ]]> #{createTimeStart}
+            </if>
+            <if test="createTimeEnd != null">
+                AND t.create_time <![CDATA[ <= ]]> #{createTimeEnd}
+            </if>
+            <if test="createId != null">
+                AND t.create_id = #{createId}
+            </if>
+            <if test="createDeptId != null">
+                AND t.create_dept_id = #{createDeptId}
+            </if>
+            <if test="ownerId != null">
+                AND t.owner_id = #{ownerId}
+            </if>
+            <if test="ownerDeptId != null">
+                AND t.owner_dept_id = #{ownerDeptId}
+            </if>
+            <if test="ownerDeptIds != null">
+                AND t.owner_dept_id in
+                <foreach collection="ownerDeptIds" open="(" separator="," close=")" item="item">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="createDeptIds != null">
+                AND t.create_dept_id in
+                <foreach collection="createDeptIds" open="(" separator="," close=")" item="item">
+                    #{item}
+                </foreach>
+            </if>
+
+            <if test="authCreateDeptIds != null">
+                AND (
+                t.create_dept_id in
+                <foreach collection="authCreateDeptIds" open="(" separator="," close=")" item="item">
+                    #{item}
+                </foreach>
+                <if test="authCreateId != null">
+                    OR t.create_id = #{authCreateId}
+                </if>
+                )
+            </if>
+            <if test="authOwnerDeptIds != null">
+                AND (
+                t.owner_dept_id in
+                <foreach collection="authOwnerDeptIds" open="(" separator="," close=")" item="item">
+                    #{item}
+                </foreach>
+                <if test="authOwnerId != null">
+                    OR t.owner_id = #{authOwnerId}
+                </if>
+                )
+            </if>
+
+            <!--客户条件-->
+            <if test="cusStatus != null">
+                AND t.cus_status = #{cusStatus}
+            </if>
+            <if test="cusStatusList != null">
+                AND t.cus_status in
+                <foreach collection="cusStatusList" open="(" separator="," close=")" item="item">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="cusOwnerType != null">
+                AND t.cus_owner_type = #{cusOwnerType}
+            </if>
+            <if test="cusOwnerTypeList != null">
+                AND t.cus_owner_type in
+                <foreach collection="cusOwnerTypeList" open="(" separator="," close=")" item="item">
+                    #{item}
+                </foreach>
+            </if>
+
+            <!--订单相关条件-->
+            <if test="orderTimeStart != null">
+                AND o.order_time <![CDATA[ >= ]]> #{orderTimeStart}
+            </if>
+            <if test="orderTimeEnd != null">
+                AND o.order_time <![CDATA[ <= ]]> #{orderTimeEnd}
+            </if>
+            <if test="orderOwnerId != null">
+                AND o.owner_id = #{orderOwnerId}
+            </if>
+            <if test="orderOwnerDeptId != null">
+                AND o.owner_dept_id = #{orderOwnerDeptId}
+            </if>
+            <if test="orderOwnerDeptIds != null">
+                AND o.owner_dept_id in
+                <foreach collection="orderOwnerDeptIds" open="(" separator="," close=")" item="item">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="authOrderOwnerDeptIds != null">
+                AND (
+                    o.owner_dept_id in
+                    <foreach collection="authOrderOwnerDeptIds" open="(" separator="," close=")" item="item">
+                        #{item}
+                    </foreach>
+                    <if test="authOrderOwnerId != null">
+                        OR o.owner_id = #{authOrderOwnerId}
+                    </if>
+                )
+            </if>
+
+            <if test="orderCpyId != null">
+                AND o.cpy_id = #{cpyId}
+            </if>
+            <if test="cpyId != null">
+                AND t.cpy_id = #{cpyId}
+            </if>
+
+        </trim>
+    </sql>
+
+    <select id="selectDeptAchievement" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select o.owner_dept_id as id,
+        sum(o.divide_amount) as tmp_amount,
+        max(d.dept_name) as name,
+        max(u.avatar) as tmp_avatar
+
+        from t_eia_trade_order_divide o
+        left join t_eia_hrm_dept_dept d on d.id = o.owner_dept_id
+        left join t_eia_ums_user u on u.id = d.leader_id
+
+        <include refid="selectSql"/>
+        group by o.owner_dept_id
+        order by tmp_amount desc
+
+        limit 20
+
+    </select>
+    <select id="selectDeptOrderCount" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select o.owner_dept_id as id,
+        count(*) as tmp_count,
+        max(d.dept_name) as name,
+        max(u.avatar) as tmp_avatar
+
+        from t_eia_trade_order o
+        left join t_eia_hrm_dept_dept d on d.id = o.owner_dept_id
+        left join t_eia_ums_user u on u.id = d.leader_id
+
+        <include refid="selectSql"/>
+        group by o.owner_dept_id
+        order by tmp_count desc
+
+        limit 20;
+
+    </select>
+    <select id="selectEmployeeOrderCount" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select o.owner_id as id,
+        count(*) as tmp_count,
+        max(u.user_name) as name,
+        max(u.avatar) as tmp_avatar
+
+        from t_eia_trade_order o
+        left join t_eia_ums_user u on u.id = o.owner_id
+
+        <include refid="selectSql"/>
+        group by o.owner_id
+        order by tmp_count desc
+
+        limit 20;
+    </select>
+
+    <!--指定时间段内每月业绩数据部门或者个人-->
+    <select id="selectMonthAchievement" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select to_char(order_time,'yyyy-mm') as name,
+        round(sum(divide_amount),2) as count
+        from t_boms_trade_industry_order_divide o
+        <include refid="selectSql"/>
+        group by to_char(order_time,'yyyy-mm')
+    </select>
+    <!--个人业绩排行榜-->
+    <select id="selectEmployeeAchievement" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select o.owner_id as id,
+        sum(o.divide_amount) as count,
+        max(u.user_name) as name,
+        max(u.avatar) as avatar,
+        max(u.owner_dept_name) as owner_dept_name
+
+        from t_boms_trade_industry_order_divide o
+        left join t_boms_ums_user u on u.id = o.owner_id
+
+        <include refid="selectSql"/>
+        group by o.owner_id
+        order by count desc
+        limit 5
+    </select>
+
+    <!--指定时间段内每月个人/集中获客量-->
+    <select id="selectMonthCustomer" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select to_char(create_time,'yyyy-mm') as name,
+        count(*) as count
+        from t_boms_crm_industry_customer t
+        <include refid="selectSql"/>
+        group by to_char(create_time,'yyyy-mm')
+    </select>
+
+    <!--个人客户开发排行-->
+    <select id="selectCustomerPersonal" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select t.create_id as id,
+        count(*) as count,
+        max(u.user_name) as name,
+        max(u.avatar) as avatar,
+        max(u.owner_dept_name) as owner_dept_name
+
+        from t_boms_crm_industry_customer t
+        left join t_boms_ums_user u on u.id = t.create_id
+
+        <include refid="selectSql"/>
+        group by t.create_id
+        order by count desc
+        limit 5
+    </select>
+
+</mapper>

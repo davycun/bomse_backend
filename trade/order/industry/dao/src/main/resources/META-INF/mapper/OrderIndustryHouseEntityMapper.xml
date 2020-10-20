@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cii.bomse.trade.order.industry.entity.OrderIndustryHouseEntity">
+
+    <resultMap id="BaseResultMap" type="com.cii.bomse.trade.order.industry.entity.OrderIndustryHouseEntity">
+        <result column="order_id" property="orderId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="park_id" property="parkId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="building_id" property="buildingId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="floor_id" property="floorId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="city_id" property="cityId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="city_name" property="cityName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="region_id" property="regionId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="region_name" property="regionName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="street_id" property="streetId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="street_name" property="streetName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="community_id" property="communityId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="community_name" property="communityName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="address" property="address" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="bd_name" property="bdName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="floor_number" property="floorNumber" jdbcType="NUMERIC" javaType="java.lang.Integer"/>
+        <result column="lease_acreage" property="leaseAcreage" jdbcType="NUMERIC" javaType="java.lang.Float"/>
+        <result column="lease_price" property="leasePrice" jdbcType="NUMERIC" javaType="java.lang.Float"/>
+        <result column="lease_price_unit" property="leasePriceUnit" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="id" property="id" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="create_id" property="createId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="create_name" property="createName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="create_dept_id" property="createDeptId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="create_dept_name" property="createDeptName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="is_deleted" property="isDeleted" jdbcType="BOOLEAN" javaType="java.lang.Boolean"/>
+        <result column="cpy_id" property="cpyId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+    </resultMap>
+
+    <!-- 批量新增信息到数据库中 -->
+    <insert id="batchInsert" parameterType="java.util.List">
+        <foreach collection="list" item="i" separator=";">
+            INSERT INTO t_boms_trade_industry_order_house
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="i.orderId != null">
+                    order_id,
+                </if>
+                <if test="i.parkId != null">
+                    park_id,
+                </if>
+                <if test="i.buildingId != null">
+                    building_id,
+                </if>
+                <if test="i.floorId != null">
+                    floor_id,
+                </if>
+                <if test="i.cityId != null">
+                    city_id,
+                </if>
+                <if test="i.cityName != null and i.cityName != ''">
+                    city_name,
+                </if>
+                <if test="i.regionId != null">
+                    region_id,
+                </if>
+                <if test="i.regionName != null and i.regionName != ''">
+                    region_name,
+                </if>
+                <if test="i.streetId != null">
+                    street_id,
+                </if>
+                <if test="i.streetName != null and i.streetName != ''">
+                    street_name,
+                </if>
+                <if test="i.communityId != null">
+                    community_id,
+                </if>
+                <if test="i.communityName != null and i.communityName != ''">
+                    community_name,
+                </if>
+                <if test="i.address != null and i.address != ''">
+                    address,
+                </if>
+                <if test="i.bdName != null and i.bdName != ''">
+                    bd_name,
+                </if>
+                <if test="i.floorNumber != null">
+                    floor_number,
+                </if>
+                <if test="i.leaseAcreage != null">
+                    lease_acreage,
+                </if>
+                <if test="i.leasePrice != null">
+                    lease_price,
+                </if>
+                <if test="i.leasePriceUnit != null and i.leasePriceUnit != ''">
+                    lease_price_unit,
+                </if>
+                <if test="i.id != null">
+                    id,
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    remark,
+                </if>
+                <if test="i.createId != null">
+                    create_id,
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name,
+                </if>
+                <if test="i.createDeptId != null">
+                    create_dept_id,
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    create_dept_name,
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted,
+                </if>
+                <if test="i.cpyId != null">
+                    cpy_id,
+                </if>
+
+            </trim>
+            <trim prefix="values (" suffix=")" suffixOverrides=",">
+
+                <if test="i.orderId != null">
+                    #{i.orderId},
+                </if>
+                <if test="i.parkId != null">
+                    #{i.parkId},
+                </if>
+                <if test="i.buildingId != null">
+                    #{i.buildingId},
+                </if>
+                <if test="i.floorId != null">
+                    #{i.floorId},
+                </if>
+                <if test="i.cityId != null">
+                    #{i.cityId},
+                </if>
+                <if test="i.cityName != null and i.cityName != ''">
+                    #{i.cityName},
+                </if>
+                <if test="i.regionId != null">
+                    #{i.regionId},
+                </if>
+                <if test="i.regionName != null and i.regionName != ''">
+                    #{i.regionName},
+                </if>
+                <if test="i.streetId != null">
+                    #{i.streetId},
+                </if>
+                <if test="i.streetName != null and i.streetName != ''">
+                    #{i.streetName},
+                </if>
+                <if test="i.communityId != null">
+                    #{i.communityId},
+                </if>
+                <if test="i.communityName != null and i.communityName != ''">
+                    #{i.communityName},
+                </if>
+                <if test="i.address != null and i.address != ''">
+                    #{i.address},
+                </if>
+                <if test="i.bdName != null and i.bdName != ''">
+                    #{i.bdName},
+                </if>
+                <if test="i.floorNumber != null">
+                    #{i.floorNumber},
+                </if>
+                <if test="i.leaseAcreage != null">
+                    #{i.leaseAcreage},
+                </if>
+                <if test="i.leasePrice != null">
+                    #{i.leasePrice},
+                </if>
+                <if test="i.leasePriceUnit != null and i.leasePriceUnit != ''">
+                    #{i.leasePriceUnit},
+                </if>
+                <if test="i.id != null">
+                    #{i.id},
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    #{i.remark},
+                </if>
+                <if test="i.createId != null">
+                    #{i.createId},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    #{i.createName},
+                </if>
+                <if test="i.createDeptId != null">
+                    #{i.createDeptId},
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    #{i.createDeptName},
+                </if>
+                <if test="i.isDeleted != null">
+                    #{i.isDeleted},
+                </if>
+                <if test="i.cpyId != null">
+                    #{i.cpyId},
+                </if>
+            </trim>
+        </foreach>
+    </insert>
+
+    <!-- 批量更新数据信息 -->
+    <update id="batchUpdate" parameterType="java.util.List">
+        <foreach collection="list" item="i" index="index" separator=";">
+            UPDATE t_boms_trade_industry_order_house
+            <trim prefix="set" suffixOverrides=",">
+                <if test="i.orderId != null">
+                    order_id = #{i.orderId},
+                </if>
+                <if test="i.parkId != null">
+                    park_id = #{i.parkId},
+                </if>
+                <if test="i.buildingId != null">
+                    building_id = #{i.buildingId},
+                </if>
+                <if test="i.floorId != null">
+                    floor_id = #{i.floorId},
+                </if>
+                <if test="i.cityId != null">
+                    city_id = #{i.cityId},
+                </if>
+                <if test="i.cityName != null and i.cityName != ''">
+                    city_name = #{i.cityName},
+                </if>
+                <if test="i.regionId != null">
+                    region_id = #{i.regionId},
+                </if>
+                <if test="i.regionName != null and i.regionName != ''">
+                    region_name = #{i.regionName},
+                </if>
+                <if test="i.streetId != null">
+                    street_id = #{i.streetId},
+                </if>
+                <if test="i.streetName != null and i.streetName != ''">
+                    street_name = #{i.streetName},
+                </if>
+                <if test="i.communityId != null">
+                    community_id = #{i.communityId},
+                </if>
+                <if test="i.communityName != null and i.communityName != ''">
+                    community_name = #{i.communityName},
+                </if>
+                <if test="i.address != null and i.address != ''">
+                    address = #{i.address},
+                </if>
+                <if test="i.bdName != null and i.bdName != ''">
+                    bd_name = #{i.bdName},
+                </if>
+                <if test="i.floorNumber != null">
+                    floor_number = #{i.floorNumber},
+                </if>
+                <if test="i.leaseAcreage != null">
+                    lease_acreage = #{i.leaseAcreage},
+                </if>
+                <if test="i.leasePrice != null">
+                    lease_price = #{i.leasePrice},
+                </if>
+                <if test="i.leasePriceUnit != null and i.leasePriceUnit != ''">
+                    lease_price_unit = #{i.leasePriceUnit},
+                </if>
+                <if test="i.id != null">
+                    id = #{i.id},
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    remark = #{i.remark},
+                </if>
+                <if test="i.createId != null">
+                    create_id = #{i.createId},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name = #{i.createName},
+                </if>
+                <if test="i.createDeptId != null">
+                    create_dept_id = #{i.createDeptId},
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    create_dept_name = #{i.createDeptName},
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted = #{i.isDeleted},
+                </if>
+                <if test="i.cpyId != null">
+                    cpy_id = #{i.cpyId},
+                </if>
+            </trim>
+            <trim prefix="where" prefixOverrides="AND|OR">
+                id = #{i.id}
+                <if test="i.cpyId != null">
+                    AND cpy_id = #{i.cpyId}
+                </if>
+            </trim>
+        </foreach>
+    </update>
+
+    <!-- 通过主键批量物理删除数据 -->
+    <delete id="batchDeleteByIds" parameterType="java.util.List">
+        DELETE FROM t_boms_trade_industry_order_house WHERE ID IN
+        <foreach collection="list" item="i" open="(" separator="," close=")">
+            #{i}
+        </foreach>
+    </delete>
+
+    <!-- 通过条件删除指定数据-->
+    <delete id="deleteByMap" parameterType="map">
+        delete from t_boms_trade_industry_order_house t
+        <include refid="selectSql"></include>
+    </delete>
+    <!--执行本地更新 -->
+    <update id="updateByNativeSql" parameterType="string">
+        ${value}
+    </update>
+
+    <!-- 根据原生Sql查询记录 -->
+    <select id="selectByNativeSql" parameterType="string" resultMap="BaseResultMap">
+        ${value}
+    </select>
+
+    <!-- 根据原生SQL查询单条记录-->
+    <select id="selectOneByNativeSql" parameterType="string" resultMap="BaseResultMap">
+        ${value}
+    </select>
+
+    <!-- 根据原生Sql统计数量 -->
+    <select id="countByNativeSql" parameterType="string" resultType="int">
+        ${value}
+    </select>
+
+    <!-- 通用脚本查询条件 -->
+    <sql id="selectSql">
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="orderIdList != null">
+                AND t.order_id in
+                <foreach collection="orderIdList" open="(" separator="," close=")" item="item">
+                    #{item}
+                </foreach>
+            </if>
+
+            <if test="orderId != null">
+                AND t.order_id = #{orderId}
+            </if>
+            <if test="parkId != null">
+                AND t.park_id = #{parkId}
+            </if>
+            <if test="buildingId != null">
+                AND t.building_id = #{buildingId}
+            </if>
+            <if test="floorId != null">
+                AND t.floor_id = #{floorId}
+            </if>
+            <if test="cityId != null">
+                AND t.city_id = #{cityId}
+            </if>
+            <if test="cityName != null">
+                AND t.city_name = #{cityName}
+            </if>
+            <if test="regionId != null">
+                AND t.region_id = #{regionId}
+            </if>
+            <if test="regionName != null">
+                AND t.region_name = #{regionName}
+            </if>
+            <if test="streetId != null">
+                AND t.street_id = #{streetId}
+            </if>
+            <if test="streetName != null">
+                AND t.street_name = #{streetName}
+            </if>
+            <if test="communityId != null">
+                AND t.community_id = #{communityId}
+            </if>
+            <if test="communityName != null">
+                AND t.community_name = #{communityName}
+            </if>
+            <if test="address != null">
+                AND t.address = #{address}
+            </if>
+            <if test="bdName != null">
+                AND t.bd_name = #{bdName}
+            </if>
+            <if test="floorNumberStart != null">
+                AND t.floor_number <![CDATA[ >= ]]> #{floorNumberStart}
+            </if>
+            <if test="floorNumberEnd != null">
+                AND t.floor_number <![CDATA[ <= ]]> #{floorNumberEnd}
+            </if>
+            <if test="leaseAcreageStart != null">
+                AND t.lease_acreage <![CDATA[ >= ]]> #{leaseAcreageStart}
+            </if>
+            <if test="leaseAcreageEnd != null">
+                AND t.lease_acreage <![CDATA[ <= ]]> #{leaseAcreageEnd}
+            </if>
+            <if test="leasePriceStart != null">
+                AND t.lease_price <![CDATA[ >= ]]> #{leasePriceStart}
+            </if>
+            <if test="leasePriceEnd != null">
+                AND t.lease_price <![CDATA[ <= ]]> #{leasePriceEnd}
+            </if>
+            <if test="leasePriceUnit != null">
+                AND t.lease_price_unit = #{leasePriceUnit}
+            </if>
+            <if test="id != null">
+                AND t.id = #{id}
+            </if>
+            <if test="remark != null">
+                AND t.remark = #{remark}
+            </if>
+            <if test="createId != null">
+                AND t.create_id = #{createId}
+            </if>
+            <if test="createName != null">
+                AND t.create_name = #{createName}
+            </if>
+            <if test="createDeptId != null">
+                AND t.create_dept_id = #{createDeptId}
+            </if>
+            <if test="createDeptName != null">
+                AND t.create_dept_name = #{createDeptName}
+            </if>
+            <if test="isDeleted != null">
+                AND t.is_deleted = #{isDeleted}
+            </if>
+            <if test="cpyId != null">
+                AND t.cpy_id = #{cpyId}
+            </if>
+        </trim>
+    </sql>
+
+    <!-- 查询唯一的信息 -->
+    <select id="selectUniqueByProp" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT t.* from t_boms_trade_industry_order_house t
+        <include refid="selectSql"/>
+    </select>
+
+    <!--查询字段-->
+    <select id="selectUniqueByPropColumns" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT
+        <choose>
+            <when test="_columns != null">
+                <foreach collection="_columns" separator="," item="item">
+                    ${item}
+                </foreach>
+            </when>
+            <otherwise>
+                t.*
+            </otherwise>
+        </choose>
+        from t_boms_trade_industry_order_house t
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="countByMap" parameterType="java.util.Map" resultType="int">
+        SELECT count(*) FROM t_boms_trade_industry_order_house t
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息 -->
+    <select id="selectByMap" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT t.* from t_boms_trade_industry_order_house t
+        <include refid="selectSql"/>
+        <if test="orderBy != null">
+            ORDER BY ${orderBy}
+        </if>
+        <if test="order != null">
+            ${order}
+        </if>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="selectByMapCount" parameterType="java.util.Map" resultType="int">
+        SELECT count(*) from t_boms_trade_industry_order_house t
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息 -->
+    <select id="selectByMapSimple" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT
+        <choose>
+            <when test="_columns != null">
+                <foreach collection="_columns" separator="," item="item">
+                    ${item}
+                </foreach>
+            </when>
+            <otherwise>
+                t.*
+            </otherwise>
+        </choose>
+        from t_boms_trade_industry_order_house t
+        <include refid="selectSql"/>
+        <if test="orderBy != null">
+            ORDER BY ${orderBy}
+        </if>
+        <if test="order != null">
+            ${order}
+        </if>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="selectByMapSimpleCount" parameterType="java.util.Map" resultType="int">
+        SELECT count(*) from t_boms_trade_industry_order_house t
+        <include refid="selectSql"/>
+    </select>
+</mapper>

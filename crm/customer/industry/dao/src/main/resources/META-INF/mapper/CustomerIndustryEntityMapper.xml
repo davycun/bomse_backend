@@ -1,0 +1,1094 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cii.bomse.crm.customer.industry.entity.CustomerIndustryEntity">
+
+    <resultMap id="BaseResultMap" type="com.cii.bomse.crm.customer.industry.entity.CustomerIndustryEntity">
+        <result column="company" property="company" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="industry" property="industry" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="product" property="product" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="need_acreage" property="needAcreage" jdbcType="NUMERIC" javaType="java.lang.Float"/>
+        <result column="need_price" property="needPrice" jdbcType="NUMERIC" javaType="java.lang.Float"/>
+        <result column="price_unit" property="priceUnit" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="need_layer" property="needLayer" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="layer_height" property="layerHeight" jdbcType="NUMERIC" javaType="java.lang.Float"/>
+        <result column="need_voltage" property="needVoltage" jdbcType="NUMERIC" javaType="java.lang.Float"/>
+        <result column="enter_time" property="enterTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        <result column="rent_long" property="rentLong" jdbcType="NUMERIC" javaType="java.lang.Integer"/>
+        <result column="fire_device_type" property="fireDeviceType" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="need_eia" property="needEia" jdbcType="BOOLEAN" javaType="java.lang.Boolean"/>
+        <result column="need_register" property="needRegister" jdbcType="BOOLEAN" javaType="java.lang.Boolean"/>
+        <result column="need_certificate" property="needCertificate" jdbcType="BOOLEAN" javaType="java.lang.Boolean"/>
+        <result column="need_office" property="needOffice" jdbcType="BOOLEAN" javaType="java.lang.Boolean"/>
+        <result column="need_single_building" property="needSingleBuilding" jdbcType="BOOLEAN"
+                javaType="java.lang.Boolean"/>
+        <result column="need_single_park" property="needSinglePark" jdbcType="BOOLEAN" javaType="java.lang.Boolean"/>
+        <result column="area_string" property="areaString" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="cus_name" property="cusName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="cus_phone" property="cusPhone" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="sex" property="sex" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="post" property="post" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="house_use_type" property="houseUseType" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="cus_source" property="cusSource" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="cus_owner_type" property="cusOwnerType" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="cus_status" property="cusStatus" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="hide_time" property="hideTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        <result column="open_user_id" property="openUserId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="open_user_name" property="openUserName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="open_time" property="openTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        <result column="pt_id" property="ptId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="pt_name" property="ptName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="pt_phone" property="ptPhone" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="last_up_user_id" property="lastUpUserId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="last_up_user_name" property="lastUpUserName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="last_up_user_dept_id" property="lastUpUserDeptId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="last_up_user_dept_name" property="lastUpUserDeptName" jdbcType="VARCHAR"
+                javaType="java.lang.String"/>
+        <result column="last_up_time" property="lastUpTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        <result column="last_down_user_id" property="lastDownUserId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="last_down_user_name" property="lastDownUserName" jdbcType="VARCHAR"
+                javaType="java.lang.String"/>
+        <result column="last_down_user_dept_id" property="lastDownUserDeptId" jdbcType="NUMERIC"
+                javaType="java.lang.Long"/>
+        <result column="last_down_user_dept_name" property="lastDownUserDeptName" jdbcType="VARCHAR"
+                javaType="java.lang.String"/>
+        <result column="last_down_time" property="lastDownTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        <result column="last_followup_time" property="lastFollowupTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        <result column="followup_count" property="followupCount" jdbcType="NUMERIC" javaType="java.lang.Integer"/>
+        <result column="next_contact_time" property="nextContactTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        <result column="id" property="id" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="owner_id" property="ownerId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="owner_name" property="ownerName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="owner_dept_id" property="ownerDeptId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="owner_dept_name" property="ownerDeptName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="create_id" property="createId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="create_name" property="createName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="create_dept_id" property="createDeptId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="create_dept_name" property="createDeptName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="last_update_id" property="lastUpdateId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="last_update_name" property="lastUpdateName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        <result column="is_deleted" property="isDeleted" jdbcType="BOOLEAN" javaType="java.lang.Boolean"/>
+        <result column="cpy_id" property="cpyId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+
+        <collection property="areas"
+                    columnPrefix="a_"
+                    resultMap="com.cii.bomse.crm.customer.base.entity.CustomerAreaEntity.BaseResultMap">
+        </collection>
+    </resultMap>
+
+    <!-- 批量新增信息到数据库中 -->
+    <insert id="batchInsert" parameterType="java.util.List">
+        <foreach collection="list" item="i" separator=";">
+            INSERT INTO t_boms_crm_industry_customer
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="i.company != null and i.company != ''">
+                    company,
+                </if>
+                <if test="i.industry != null and i.industry != ''">
+                    industry,
+                </if>
+                <if test="i.product != null and i.product != ''">
+                    product,
+                </if>
+                <if test="i.needAcreage != null">
+                    need_acreage,
+                </if>
+                <if test="i.needPrice != null">
+                    need_price,
+                </if>
+                <if test="i.priceUnit != null and i.priceUnit != ''">
+                    price_unit,
+                </if>
+                <if test="i.needLayer != null and i.needLayer != ''">
+                    need_layer,
+                </if>
+                <if test="i.layerHeight != null">
+                    layer_height,
+                </if>
+                <if test="i.needVoltage != null">
+                    need_voltage,
+                </if>
+                <if test="i.enterTime != null">
+                    enter_time,
+                </if>
+                <if test="i.rentLong != null">
+                    rent_long,
+                </if>
+                <if test="i.fireDeviceType != null and i.fireDeviceType != ''">
+                    fire_device_type,
+                </if>
+                <if test="i.needEia != null">
+                    need_eia,
+                </if>
+                <if test="i.needRegister != null">
+                    need_register,
+                </if>
+                <if test="i.needCertificate != null">
+                    need_certificate,
+                </if>
+                <if test="i.needOffice != null">
+                    need_office,
+                </if>
+                <if test="i.needSingleBuilding != null">
+                    need_single_building,
+                </if>
+                <if test="i.needSinglePark != null">
+                    need_single_park,
+                </if>
+                <if test="i.areaString != null and i.areaString != ''">
+                    area_string,
+                </if>
+                <if test="i.cusName != null and i.cusName != ''">
+                    cus_name,
+                </if>
+                <if test="i.cusPhone != null and i.cusPhone != ''">
+                    cus_phone,
+                </if>
+                <if test="i.sex != null and i.sex != ''">
+                    sex,
+                </if>
+                <if test="i.post != null and i.post != ''">
+                    post,
+                </if>
+                <if test="i.houseUseType != null and i.houseUseType != ''">
+                    house_use_type,
+                </if>
+                <if test="i.cusSource != null and i.cusSource != ''">
+                    cus_source,
+                </if>
+                <if test="i.cusOwnerType != null and i.cusOwnerType != ''">
+                    cus_owner_type,
+                </if>
+                <if test="i.cusStatus != null and i.cusStatus != ''">
+                    cus_status,
+                </if>
+                <if test="i.hideTime != null">
+                    hide_time,
+                </if>
+                <if test="i.openUserId != null">
+                    open_user_id,
+                </if>
+                <if test="i.openUserName != null and i.openUserName != ''">
+                    open_user_name,
+                </if>
+                <if test="i.openTime != null">
+                    open_time,
+                </if>
+                <if test="i.ptId != null">
+                    pt_id,
+                </if>
+                <if test="i.ptName != null and i.ptName != ''">
+                    pt_name,
+                </if>
+                <if test="i.ptPhone != null and i.ptPhone != ''">
+                    pt_phone,
+                </if>
+                <if test="i.lastUpUserId != null">
+                    last_up_user_id,
+                </if>
+                <if test="i.lastUpUserName != null and i.lastUpUserName != ''">
+                    last_up_user_name,
+                </if>
+                <if test="i.lastUpUserDeptId != null">
+                    last_up_user_dept_id,
+                </if>
+                <if test="i.lastUpUserDeptName != null and i.lastUpUserDeptName != ''">
+                    last_up_user_dept_name,
+                </if>
+                <if test="i.lastUpTime != null">
+                    last_up_time,
+                </if>
+                <if test="i.lastDownUserId != null">
+                    last_down_user_id,
+                </if>
+                <if test="i.lastDownUserName != null and i.lastDownUserName != ''">
+                    last_down_user_name,
+                </if>
+                <if test="i.lastDownUserDeptId != null">
+                    last_down_user_dept_id,
+                </if>
+                <if test="i.lastDownUserDeptName != null and i.lastDownUserDeptName != ''">
+                    last_down_user_dept_name,
+                </if>
+                <if test="i.lastDownTime != null">
+                    last_down_time,
+                </if>
+                <if test="i.lastFollowupTime != null">
+                    last_followup_time,
+                </if>
+                <if test="i.followupCount != null">
+                    followup_count,
+                </if>
+                <if test="i.nextContactTime != null">
+                    next_contact_time,
+                </if>
+                <if test="i.id != null">
+                    id,
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    remark,
+                </if>
+                <if test="i.ownerId != null">
+                    owner_id,
+                </if>
+                <if test="i.ownerName != null and i.ownerName != ''">
+                    owner_name,
+                </if>
+                <if test="i.ownerDeptId != null">
+                    owner_dept_id,
+                </if>
+                <if test="i.ownerDeptName != null and i.ownerDeptName != ''">
+                    owner_dept_name,
+                </if>
+                <if test="i.createId != null">
+                    create_id,
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name,
+                </if>
+                <if test="i.createDeptId != null">
+                    create_dept_id,
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    create_dept_name,
+                </if>
+                <if test="i.lastUpdateId != null">
+                    last_update_id,
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name,
+                </if>
+                <if test="i.createTime != null">
+                    create_time,
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time,
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted,
+                </if>
+                <if test="i.cpyId != null">
+                    cpy_id,
+                </if>
+            </trim>
+            <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="i.company != null and i.company != ''">
+                    #{i.company},
+                </if>
+                <if test="i.industry != null and i.industry != ''">
+                    #{i.industry},
+                </if>
+                <if test="i.product != null and i.product != ''">
+                    #{i.product},
+                </if>
+                <if test="i.needAcreage != null">
+                    #{i.needAcreage},
+                </if>
+                <if test="i.needPrice != null">
+                    #{i.needPrice},
+                </if>
+                <if test="i.priceUnit != null and i.priceUnit != ''">
+                    #{i.priceUnit},
+                </if>
+                <if test="i.needLayer != null and i.needLayer != ''">
+                    #{i.needLayer},
+                </if>
+                <if test="i.layerHeight != null">
+                    #{i.layerHeight},
+                </if>
+                <if test="i.needVoltage != null">
+                    #{i.needVoltage},
+                </if>
+                <if test="i.enterTime != null">
+                    #{i.enterTime},
+                </if>
+                <if test="i.rentLong != null">
+                    #{i.rentLong},
+                </if>
+                <if test="i.fireDeviceType != null and i.fireDeviceType != ''">
+                    #{i.fireDeviceType},
+                </if>
+                <if test="i.needEia != null">
+                    #{i.needEia},
+                </if>
+                <if test="i.needRegister != null">
+                    #{i.needRegister},
+                </if>
+                <if test="i.needCertificate != null">
+                    #{i.needCertificate},
+                </if>
+                <if test="i.needOffice != null">
+                    #{i.needOffice},
+                </if>
+                <if test="i.needSingleBuilding != null">
+                    #{i.needSingleBuilding},
+                </if>
+                <if test="i.needSinglePark != null">
+                    #{i.needSinglePark},
+                </if>
+                <if test="i.areaString != null and i.areaString != ''">
+                    #{i.areaString},
+                </if>
+                <if test="i.cusName != null and i.cusName != ''">
+                    #{i.cusName},
+                </if>
+                <if test="i.cusPhone != null and i.cusPhone != ''">
+                    #{i.cusPhone},
+                </if>
+                <if test="i.sex != null and i.sex != ''">
+                    #{i.sex},
+                </if>
+                <if test="i.post != null and i.post != ''">
+                    #{i.post},
+                </if>
+                <if test="i.houseUseType != null and i.houseUseType != ''">
+                    #{i.houseUseType},
+                </if>
+                <if test="i.cusSource != null and i.cusSource != ''">
+                    #{i.cusSource},
+                </if>
+                <if test="i.cusOwnerType != null and i.cusOwnerType != ''">
+                    #{i.cusOwnerType},
+                </if>
+                <if test="i.cusStatus != null and i.cusStatus != ''">
+                    #{i.cusStatus},
+                </if>
+                <if test="i.hideTime != null">
+                    #{i.hideTime},
+                </if>
+                <if test="i.openUserId != null">
+                    #{i.openUserId},
+                </if>
+                <if test="i.openUserName != null and i.openUserName != ''">
+                    #{i.openUserName},
+                </if>
+                <if test="i.openTime != null">
+                    #{i.openTime},
+                </if>
+                <if test="i.ptId != null">
+                    #{i.ptId},
+                </if>
+                <if test="i.ptName != null and i.ptName != ''">
+                    #{i.ptName},
+                </if>
+                <if test="i.ptPhone != null and i.ptPhone != ''">
+                    #{i.ptPhone},
+                </if>
+                <if test="i.lastUpUserId != null">
+                    #{i.lastUpUserId},
+                </if>
+                <if test="i.lastUpUserName != null and i.lastUpUserName != ''">
+                    #{i.lastUpUserName},
+                </if>
+                <if test="i.lastUpUserDeptId != null">
+                    #{i.lastUpUserDeptId},
+                </if>
+                <if test="i.lastUpUserDeptName != null and i.lastUpUserDeptName != ''">
+                    #{i.lastUpUserDeptName},
+                </if>
+                <if test="i.lastUpTime != null">
+                    #{i.lastUpTime},
+                </if>
+                <if test="i.lastDownUserId != null">
+                    #{i.lastDownUserId},
+                </if>
+                <if test="i.lastDownUserName != null and i.lastDownUserName != ''">
+                    #{i.lastDownUserName},
+                </if>
+                <if test="i.lastDownUserDeptId != null">
+                    #{i.lastDownUserDeptId},
+                </if>
+                <if test="i.lastDownUserDeptName != null and i.lastDownUserDeptName != ''">
+                    #{i.lastDownUserDeptName},
+                </if>
+                <if test="i.lastDownTime != null">
+                    #{i.lastDownTime},
+                </if>
+                <if test="i.lastFollowupTime != null">
+                    #{i.lastFollowupTime},
+                </if>
+                <if test="i.followupCount != null">
+                    #{i.followupCount},
+                </if>
+                <if test="i.nextContactTime != null">
+                    #{i.nextContactTime},
+                </if>
+                <if test="i.id != null">
+                    #{i.id},
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    #{i.remark},
+                </if>
+                <if test="i.ownerId != null">
+                    #{i.ownerId},
+                </if>
+                <if test="i.ownerName != null and i.ownerName != ''">
+                    #{i.ownerName},
+                </if>
+                <if test="i.ownerDeptId != null">
+                    #{i.ownerDeptId},
+                </if>
+                <if test="i.ownerDeptName != null and i.ownerDeptName != ''">
+                    #{i.ownerDeptName},
+                </if>
+                <if test="i.createId != null">
+                    #{i.createId},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    #{i.createName},
+                </if>
+                <if test="i.createDeptId != null">
+                    #{i.createDeptId},
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    #{i.createDeptName},
+                </if>
+                <if test="i.lastUpdateId != null">
+                    #{i.lastUpdateId},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    #{i.isDeleted},
+                </if>
+                <if test="i.cpyId != null">
+                    #{i.cpyId},
+                </if>
+            </trim>
+        </foreach>
+    </insert>
+
+    <!-- 批量更新数据信息 -->
+    <update id="batchUpdate" parameterType="java.util.List">
+        <foreach collection="list" item="i" index="index" separator=";">
+            UPDATE t_boms_crm_industry_customer
+            <trim prefix="set" suffixOverrides=",">
+                <if test="i.company != null and i.company != ''">
+                    company = #{i.company},
+                </if>
+                <if test="i.industry != null and i.industry != ''">
+                    industry = #{i.industry},
+                </if>
+                <if test="i.product != null and i.product != ''">
+                    product = #{i.product},
+                </if>
+                <if test="i.needAcreage != null">
+                    need_acreage = #{i.needAcreage},
+                </if>
+                <if test="i.needPrice != null">
+                    need_price = #{i.needPrice},
+                </if>
+                <if test="i.priceUnit != null and i.priceUnit != ''">
+                    price_unit = #{i.priceUnit},
+                </if>
+                <if test="i.needLayer != null and i.needLayer != ''">
+                    need_layer = #{i.needLayer},
+                </if>
+                <if test="i.layerHeight != null">
+                    layer_height = #{i.layerHeight},
+                </if>
+                <if test="i.needVoltage != null">
+                    need_voltage = #{i.needVoltage},
+                </if>
+                <if test="i.enterTime != null">
+                    enter_time = #{i.enterTime},
+                </if>
+                <if test="i.rentLong != null">
+                    rent_long = #{i.rentLong},
+                </if>
+                <if test="i.fireDeviceType != null and i.fireDeviceType != ''">
+                    fire_device_type = #{i.fireDeviceType},
+                </if>
+                <if test="i.needEia != null">
+                    need_eia = #{i.needEia},
+                </if>
+                <if test="i.needRegister != null">
+                    need_register = #{i.needRegister},
+                </if>
+                <if test="i.needCertificate != null">
+                    need_certificate = #{i.needCertificate},
+                </if>
+                <if test="i.needOffice != null">
+                    need_office = #{i.needOffice},
+                </if>
+                <if test="i.needSingleBuilding != null">
+                    need_single_building = #{i.needSingleBuilding},
+                </if>
+                <if test="i.needSinglePark != null">
+                    need_single_park = #{i.needSinglePark},
+                </if>
+                <if test="i.areaString != null and i.areaString != ''">
+                    area_string = #{i.areaString},
+                </if>
+                <if test="i.cusName != null and i.cusName != ''">
+                    cus_name = #{i.cusName},
+                </if>
+                <if test="i.cusPhone != null and i.cusPhone != ''">
+                    cus_phone = #{i.cusPhone},
+                </if>
+                <if test="i.sex != null and i.sex != ''">
+                    sex = #{i.sex},
+                </if>
+                <if test="i.post != null and i.post != ''">
+                    post = #{i.post},
+                </if>
+                <if test="i.houseUseType != null and i.houseUseType != ''">
+                    house_use_type = #{i.houseUseType},
+                </if>
+                <if test="i.cusSource != null and i.cusSource != ''">
+                    cus_source = #{i.cusSource},
+                </if>
+                <if test="i.cusOwnerType != null and i.cusOwnerType != ''">
+                    cus_owner_type = #{i.cusOwnerType},
+                </if>
+                <if test="i.cusStatus != null and i.cusStatus != ''">
+                    cus_status = #{i.cusStatus},
+                </if>
+                <if test="i.hideTime != null">
+                    hide_time = #{i.hideTime},
+                </if>
+                <if test="i.openUserId != null">
+                    open_user_id = #{i.openUserId},
+                </if>
+                <if test="i.openUserName != null and i.openUserName != ''">
+                    open_user_name = #{i.openUserName},
+                </if>
+                <if test="i.openTime != null">
+                    open_time = #{i.openTime},
+                </if>
+                <if test="i.ptId != null">
+                    pt_id = #{i.ptId},
+                </if>
+                <if test="i.ptName != null and i.ptName != ''">
+                    pt_name = #{i.ptName},
+                </if>
+                <if test="i.ptPhone != null and i.ptPhone != ''">
+                    pt_phone = #{i.ptPhone},
+                </if>
+                <if test="i.lastUpUserId != null">
+                    last_up_user_id = #{i.lastUpUserId},
+                </if>
+                <if test="i.lastUpUserName != null and i.lastUpUserName != ''">
+                    last_up_user_name = #{i.lastUpUserName},
+                </if>
+                <if test="i.lastUpUserDeptId != null">
+                    last_up_user_dept_id = #{i.lastUpUserDeptId},
+                </if>
+                <if test="i.lastUpUserDeptName != null and i.lastUpUserDeptName != ''">
+                    last_up_user_dept_name = #{i.lastUpUserDeptName},
+                </if>
+                <if test="i.lastUpTime != null">
+                    last_up_time = #{i.lastUpTime},
+                </if>
+                <if test="i.lastDownUserId != null">
+                    last_down_user_id = #{i.lastDownUserId},
+                </if>
+                <if test="i.lastDownUserName != null and i.lastDownUserName != ''">
+                    last_down_user_name = #{i.lastDownUserName},
+                </if>
+                <if test="i.lastDownUserDeptId != null">
+                    last_down_user_dept_id = #{i.lastDownUserDeptId},
+                </if>
+                <if test="i.lastDownUserDeptName != null and i.lastDownUserDeptName != ''">
+                    last_down_user_dept_name = #{i.lastDownUserDeptName},
+                </if>
+                <if test="i.lastDownTime != null">
+                    last_down_time = #{i.lastDownTime},
+                </if>
+                <if test="i.lastFollowupTime != null">
+                    last_followup_time = #{i.lastFollowupTime},
+                </if>
+                <if test="i.followupCount != null">
+                    followup_count = #{i.followupCount},
+                </if>
+                <if test="i.nextContactTime != null">
+                    next_contact_time = #{i.nextContactTime},
+                </if>
+                <if test="i.id != null">
+                    id = #{i.id},
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    remark = #{i.remark},
+                </if>
+                <if test="i.ownerId != null">
+                    owner_id = #{i.ownerId},
+                </if>
+                <if test="i.ownerName != null and i.ownerName != ''">
+                    owner_name = #{i.ownerName},
+                </if>
+                <if test="i.ownerDeptId != null">
+                    owner_dept_id = #{i.ownerDeptId},
+                </if>
+                <if test="i.ownerDeptName != null and i.ownerDeptName != ''">
+                    owner_dept_name = #{i.ownerDeptName},
+                </if>
+                <if test="i.createId != null">
+                    create_id = #{i.createId},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name = #{i.createName},
+                </if>
+                <if test="i.createDeptId != null">
+                    create_dept_id = #{i.createDeptId},
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    create_dept_name = #{i.createDeptName},
+                </if>
+                <if test="i.lastUpdateId != null">
+                    last_update_id = #{i.lastUpdateId},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name = #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    create_time = #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time = #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted = #{i.isDeleted},
+                </if>
+                <if test="i.cpyId != null">
+                    cpy_id = #{i.cpyId},
+                </if>
+            </trim>
+            <trim prefix="where" prefixOverrides="AND|OR">
+                id = #{i.id}
+                <if test="i.cpyId != null">
+                    AND cpy_id = #{i.cpyId}
+                </if>
+            </trim>
+        </foreach>
+    </update>
+
+    <!-- 通过主键批量物理删除数据 -->
+    <delete id="batchDeleteByIds" parameterType="java.util.List">
+        DELETE FROM t_boms_crm_industry_customer WHERE ID IN
+        <foreach collection="list" item="i" open="(" separator="," close=")">
+            #{i}
+        </foreach>
+    </delete>
+
+    <!-- 通过条件删除指定数据-->
+    <delete id="deleteByMap" parameterType="map">
+        delete from t_boms_crm_industry_customer t
+        <include refid="selectSql"></include>
+    </delete>
+    <!--执行本地更新 -->
+    <update id="updateByNativeSql" parameterType="string">
+        ${value}
+    </update>
+
+    <!-- 根据原生Sql查询记录 -->
+    <select id="selectByNativeSql" parameterType="string" resultMap="BaseResultMap">
+        ${value}
+    </select>
+
+    <!-- 根据原生SQL查询单条记录-->
+    <select id="selectOneByNativeSql" parameterType="string" resultMap="BaseResultMap">
+        ${value}
+    </select>
+
+    <!-- 根据原生Sql统计数量 -->
+    <select id="countByNativeSql" parameterType="string" resultType="int">
+        ${value}
+    </select>
+
+    <!-- 通用脚本查询条件 -->
+    <sql id="selectSql">
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="keyword != null">
+                AND (
+                t.remark like '%'||#{keyword}||'%'
+                or t.cus_phone like '%'||#{keyword}||'%'
+                or t.company like '%'||#{keyword}||'%'
+                or t.product like '%'||#{keyword}||'%'
+                or t.cus_name like '%'||#{keyword}||'%'
+                or t.owner_name like '%'||#{keyword}||'%'
+                or t.owner_dept_name like '%'||#{keyword}||'%'
+                or t.area_string like '%'||#{keyword}||'%'
+                )
+            </if>
+            <if test="authOwnerDeptIds != null">
+                AND ( t.owner_dept_id in
+                <foreach collection="authOwnerDeptIds" open="(" separator="," close=")" item="item">
+                    #{item}
+                </foreach>
+                <if test="authOwnerId != null">
+                    or t.owner_id = #{authOwnerId}
+                </if>
+                )
+            </if>
+            <!--没有传入客户类型的时候，只能查询所属是自己的客户（包含了个人客户和拉私客户），或者本部门的公盘客户-->
+            <if test="authCusOwnerType != null and authCusOwnerDeptId != null">
+                AND (
+                t.cus_owner_type= #{authCusOwnerType}
+                <if test="authCusOwnerDeptId != null">
+                    AND t.owner_dept_id = #{authCusOwnerDeptId}
+                </if>
+                <if test="authOwnerId != null">
+                    OR t.owner_id = #{authOwnerId}
+                </if>
+                )
+            </if>
+            <if test="cusStatuses != null">
+                AND t.cus_status in
+                <foreach collection="cusStatuses" open="(" separator="," close=")" item="item">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="notCusStatus != null">
+                AND t.cus_status != #{notCusStatus}
+            </if>
+            <if test="waitContact != null">
+                AND t.last_followup_time <![CDATA[ <= ]]> t.next_contact_time
+            </if>
+
+            <if test="company != null">
+                AND t.company = #{company}
+            </if>
+            <if test="industry != null">
+                AND t.industry = #{industry}
+            </if>
+            <if test="product != null">
+                AND t.product = #{product}
+            </if>
+            <if test="needAcreageStart != null">
+                AND t.need_acreage <![CDATA[ >= ]]> #{needAcreageStart}
+            </if>
+            <if test="needAcreageEnd != null">
+                AND t.need_acreage <![CDATA[ <= ]]> #{needAcreageEnd}
+            </if>
+            <if test="needPriceStart != null">
+                AND t.need_price <![CDATA[ >= ]]> #{needPriceStart}
+            </if>
+            <if test="needPriceEnd != null">
+                AND t.need_price <![CDATA[ <= ]]> #{needPriceEnd}
+            </if>
+            <if test="priceUnit != null">
+                AND t.price_unit = #{priceUnit}
+            </if>
+            <if test="needLayer != null">
+                AND t.need_layer = #{needLayer}
+            </if>
+            <if test="layerHeightStart != null">
+                AND t.layer_height <![CDATA[ >= ]]> #{layerHeightStart}
+            </if>
+            <if test="layerHeightEnd != null">
+                AND t.layer_height <![CDATA[ <= ]]> #{layerHeightEnd}
+            </if>
+            <if test="needVoltageStart != null">
+                AND t.need_voltage <![CDATA[ >= ]]> #{needVoltageStart}
+            </if>
+            <if test="needVoltageEnd != null">
+                AND t.need_voltage <![CDATA[ <= ]]> #{needVoltageEnd}
+            </if>
+            <if test="enterTimeStart != null">
+                AND t.enter_time <![CDATA[ >= ]]> #{enterTimeStart}
+            </if>
+            <if test="enterTimeEnd != null">
+                AND t.enter_time <![CDATA[ <= ]]> #{enterTimeEnd}
+            </if>
+            <if test="rentLongStart != null">
+                AND t.rent_long <![CDATA[ >= ]]> #{rentLongStart}
+            </if>
+            <if test="rentLongEnd != null">
+                AND t.rent_long <![CDATA[ <= ]]> #{rentLongEnd}
+            </if>
+            <if test="fireDeviceType != null">
+                AND t.fire_device_type = #{fireDeviceType}
+            </if>
+            <if test="needEia != null">
+                AND t.need_eia = #{needEia}
+            </if>
+            <if test="needRegister != null">
+                AND t.need_register = #{needRegister}
+            </if>
+            <if test="needCertificate != null">
+                AND t.need_certificate = #{needCertificate}
+            </if>
+            <if test="needOffice != null">
+                AND t.need_office = #{needOffice}
+            </if>
+            <if test="needSingleBuilding != null">
+                AND t.need_single_building = #{needSingleBuilding}
+            </if>
+            <if test="needSinglePark != null">
+                AND t.need_single_park = #{needSinglePark}
+            </if>
+            <if test="areaString != null">
+                AND t.area_string like '%'|| #{areaString}||'%'
+            </if>
+            <if test="cusName != null">
+                AND t.cus_name = #{cusName}
+            </if>
+            <if test="cusPhone != null">
+                AND t.cus_phone = #{cusPhone}
+            </if>
+            <if test="sex != null">
+                AND t.sex = #{sex}
+            </if>
+            <if test="post != null">
+                AND t.post = #{post}
+            </if>
+            <if test="houseUseType != null">
+                AND t.house_use_type = #{houseUseType}
+            </if>
+            <if test="cusSource != null">
+                AND t.cus_source = #{cusSource}
+            </if>
+            <if test="cusOwnerType != null">
+                AND t.cus_owner_type = #{cusOwnerType}
+            </if>
+            <if test="cusStatus != null">
+                AND t.cus_status = #{cusStatus}
+            </if>
+            <if test="hideTimeStart != null">
+                AND t.hide_time <![CDATA[ >= ]]> #{hideTimeStart}
+            </if>
+            <if test="hideTimeEnd != null">
+                AND t.hide_time <![CDATA[ <= ]]> #{hideTimeEnd}
+            </if>
+            <if test="openUserId != null">
+                AND t.open_user_id = #{openUserId}
+            </if>
+            <if test="openUserName != null">
+                AND t.open_user_name = #{openUserName}
+            </if>
+            <if test="openTimeStart != null">
+                AND t.open_time <![CDATA[ >= ]]> #{openTimeStart}
+            </if>
+            <if test="openTimeEnd != null">
+                AND t.open_time <![CDATA[ <= ]]> #{openTimeEnd}
+            </if>
+            <if test="ptId != null">
+                AND t.pt_id = #{ptId}
+            </if>
+            <if test="ptName != null">
+                AND t.pt_name = #{ptName}
+            </if>
+            <if test="ptPhone != null">
+                AND t.pt_phone = #{ptPhone}
+            </if>
+            <if test="lastUpUserId != null">
+                AND t.last_up_user_id = #{lastUpUserId}
+            </if>
+            <if test="lastUpUserName != null">
+                AND t.last_up_user_name = #{lastUpUserName}
+            </if>
+            <if test="lastUpUserDeptId != null">
+                AND t.last_up_user_dept_id = #{lastUpUserDeptId}
+            </if>
+            <if test="lastUpUserDeptName != null">
+                AND t.last_up_user_dept_name = #{lastUpUserDeptName}
+            </if>
+            <if test="lastUpTimeStart != null">
+                AND t.last_up_time <![CDATA[ >= ]]> #{lastUpTimeStart}
+            </if>
+            <if test="lastUpTimeEnd != null">
+                AND t.last_up_time <![CDATA[ <= ]]> #{lastUpTimeEnd}
+            </if>
+            <if test="lastDownUserId != null">
+                AND t.last_down_user_id = #{lastDownUserId}
+            </if>
+            <if test="lastDownUserName != null">
+                AND t.last_down_user_name = #{lastDownUserName}
+            </if>
+            <if test="lastDownUserDeptId != null">
+                AND t.last_down_user_dept_id = #{lastDownUserDeptId}
+            </if>
+            <if test="lastDownUserDeptName != null">
+                AND t.last_down_user_dept_name = #{lastDownUserDeptName}
+            </if>
+            <if test="lastDownTimeStart != null">
+                AND t.last_down_time <![CDATA[ >= ]]> #{lastDownTimeStart}
+            </if>
+            <if test="lastDownTimeEnd != null">
+                AND t.last_down_time <![CDATA[ <= ]]> #{lastDownTimeEnd}
+            </if>
+            <if test="lastFollowupTimeStart != null">
+                AND t.last_followup_time <![CDATA[ >= ]]> #{lastFollowupTimeStart}
+            </if>
+            <if test="lastFollowupTimeEnd != null">
+                AND t.last_followup_time <![CDATA[ <= ]]> #{lastFollowupTimeEnd}
+            </if>
+            <if test="followupCountStart != null">
+                AND t.followup_count <![CDATA[ >= ]]> #{followupCountStart}
+            </if>
+            <if test="followupCountEnd != null">
+                AND t.followup_count <![CDATA[ <= ]]> #{followupCountEnd}
+            </if>
+            <if test="nextContactTimeStart != null">
+                AND t.next_contact_time <![CDATA[ >= ]]> #{nextContactTimeStart}
+            </if>
+            <if test="nextContactTimeEnd != null">
+                AND t.next_contact_time <![CDATA[ <= ]]> #{nextContactTimeEnd}
+            </if>
+            <if test="id != null">
+                AND t.id = #{id}
+            </if>
+            <if test="remark != null">
+                AND t.remark = #{remark}
+            </if>
+            <if test="ownerId != null">
+                AND t.owner_id = #{ownerId}
+            </if>
+            <if test="ownerName != null">
+                AND t.owner_name = #{ownerName}
+            </if>
+            <if test="ownerDeptId != null">
+                AND t.owner_dept_id = #{ownerDeptId}
+            </if>
+            <if test="ownerDeptName != null">
+                AND t.owner_dept_name = #{ownerDeptName}
+            </if>
+            <if test="createId != null">
+                AND t.create_id = #{createId}
+            </if>
+            <if test="createName != null">
+                AND t.create_name = #{createName}
+            </if>
+            <if test="createDeptId != null">
+                AND t.create_dept_id = #{createDeptId}
+            </if>
+            <if test="createDeptName != null">
+                AND t.create_dept_name = #{createDeptName}
+            </if>
+            <if test="lastUpdateId != null">
+                AND t.last_update_id = #{lastUpdateId}
+            </if>
+            <if test="lastUpdateName != null">
+                AND t.last_update_name = #{lastUpdateName}
+            </if>
+            <if test="createTimeStart != null">
+                AND t.create_time <![CDATA[ >= ]]> #{createTimeStart}
+            </if>
+            <if test="createTimeEnd != null">
+                AND t.create_time <![CDATA[ <= ]]> #{createTimeEnd}
+            </if>
+            <if test="lastUpdateTimeStart != null">
+                AND t.last_update_time <![CDATA[ >= ]]> #{lastUpdateTimeStart}
+            </if>
+            <if test="lastUpdateTimeEnd != null">
+                AND t.last_update_time <![CDATA[ <= ]]> #{lastUpdateTimeEnd}
+            </if>
+            <if test="isDeleted != null">
+                AND t.is_deleted = #{isDeleted}
+            </if>
+            <if test="cpyId != null">
+                AND t.cpy_id = #{cpyId}
+            </if>
+        </trim>
+    </sql>
+
+    <!-- 查询唯一的信息 -->
+    <select id="selectUniqueByProp" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT t.*,
+        a.id as a_id,
+        a.city_id as a_city_id,
+        a.city_name as a_city_name,
+        a.region_id as a_region_id,
+        a.region_name as a_region_name,
+        a.street_id as a_street_id,
+        a.street_name as a_street_name,
+        a.community_id as a_community_id,
+        a.community_name as a_community_name
+        from t_boms_crm_industry_customer t
+        left join t_boms_crm_customer_area a on a.cus_id = t.id
+        <include refid="selectSql"/>
+    </select>
+
+    <!--查询字段-->
+    <select id="selectUniqueByPropColumns" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT
+        <choose>
+            <when test="_columns != null">
+                <foreach collection="_columns" separator="," item="item">
+                    ${item}
+                </foreach>
+            </when>
+            <otherwise>
+                t.*
+            </otherwise>
+        </choose>
+        from t_boms_crm_industry_customer t
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="countByMap" parameterType="java.util.Map" resultType="int">
+        SELECT count(*) FROM t_boms_crm_industry_customer t
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息 -->
+    <select id="selectByMap" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT t.*,
+        a.id as a_id,
+        a.city_id as a_city_id,
+        a.city_name as a_city_name,
+        a.region_id as a_region_id,
+        a.region_name as a_region_name,
+        a.street_id as a_street_id,
+        a.street_name as a_street_name,
+        a.community_id as a_community_id,
+        a.community_name as a_community_name
+
+        from t_boms_crm_industry_customer t
+        left join t_boms_crm_customer_area a on a.cus_id = t.id
+        <include refid="selectSql"/>
+        <if test="orderBy != null">
+            ORDER BY ${orderBy}
+        </if>
+        <if test="order != null">
+            ${order}
+        </if>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="selectByMapCount" parameterType="java.util.Map" resultType="int">
+        SELECT count(*) from t_boms_crm_industry_customer t
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息 -->
+    <select id="selectByMapSimple" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT
+        <choose>
+            <when test="_columns != null">
+                <foreach collection="_columns" separator="," item="item">
+                    ${item}
+                </foreach>
+            </when>
+            <otherwise>
+                t.*
+            </otherwise>
+        </choose>
+        from t_boms_crm_industry_customer t
+        <include refid="selectSql"/>
+        <if test="orderBy != null">
+            ORDER BY ${orderBy}
+        </if>
+        <if test="order != null">
+            ${order}
+        </if>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="selectByMapSimpleCount" parameterType="java.util.Map" resultType="int">
+        SELECT count(*) from t_boms_crm_industry_customer t
+        <include refid="selectSql"/>
+    </select>
+</mapper>

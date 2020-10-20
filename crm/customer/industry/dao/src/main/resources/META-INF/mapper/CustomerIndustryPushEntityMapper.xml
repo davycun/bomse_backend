@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cii.bomse.crm.customer.industry.entity.CustomerIndustryPushEntity">
+
+    <resultMap id="BaseResultMap" type="com.cii.bomse.crm.customer.industry.entity.CustomerIndustryPushEntity">
+        <result column="cus_id" property="cusId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="push_user_id" property="pushUserId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="push_user_name" property="pushUserName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="push_dept_id" property="pushDeptId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="push_dept_name" property="pushDeptName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="receive_user_id" property="receiveUserId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="receive_user_name" property="receiveUserName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="receive_dept_id" property="receiveDeptId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="receive_dept_name" property="receiveDeptName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="push_status" property="pushStatus" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="process_time" property="processTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        <result column="push_remark" property="pushRemark" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="refuse_reason" property="refuseReason" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="id" property="id" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        <result column="cpy_id" property="cpyId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+
+        <association property="customer"
+                     columnPrefix="c_"
+                     resultMap="com.cii.bomse.crm.customer.industry.entity.CustomerIndustryEntity.BaseResultMap">
+        </association>
+
+    </resultMap>
+
+    <!-- 批量新增信息到数据库中 -->
+    <insert id="batchInsert" parameterType="java.util.List">
+        <foreach collection="list" item="i" separator=";">
+            INSERT INTO t_boms_crm_industry_customer_push
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="i.cusId != null">
+                    cus_id,
+                </if>
+                <if test="i.pushUserId != null">
+                    push_user_id,
+                </if>
+                <if test="i.pushUserName != null and i.pushUserName != ''">
+                    push_user_name,
+                </if>
+                <if test="i.pushDeptId != null">
+                    push_dept_id,
+                </if>
+                <if test="i.pushDeptName != null and i.pushDeptName != ''">
+                    push_dept_name,
+                </if>
+                <if test="i.receiveUserId != null">
+                    receive_user_id,
+                </if>
+                <if test="i.receiveUserName != null and i.receiveUserName != ''">
+                    receive_user_name,
+                </if>
+                <if test="i.receiveDeptId != null">
+                    receive_dept_id,
+                </if>
+                <if test="i.receiveDeptName != null and i.receiveDeptName != ''">
+                    receive_dept_name,
+                </if>
+                <if test="i.pushStatus != null and i.pushStatus != ''">
+                    push_status,
+                </if>
+                <if test="i.processTime != null">
+                    process_time,
+                </if>
+                <if test="i.pushRemark != null and i.pushRemark != ''">
+                    push_remark,
+                </if>
+                <if test="i.refuseReason != null and i.refuseReason != ''">
+                    refuse_reason,
+                </if>
+                <if test="i.id != null">
+                    id,
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    remark,
+                </if>
+                <if test="i.createTime != null">
+                    create_time,
+                </if>
+                <if test="i.cpyId != null">
+                    cpy_id,
+                </if>
+
+            </trim>
+            <trim prefix="values (" suffix=")" suffixOverrides=",">
+
+                <if test="i.cusId != null">
+                    #{i.cusId},
+                </if>
+                <if test="i.pushUserId != null">
+                    #{i.pushUserId},
+                </if>
+                <if test="i.pushUserName != null and i.pushUserName != ''">
+                    #{i.pushUserName},
+                </if>
+                <if test="i.pushDeptId != null">
+                    #{i.pushDeptId},
+                </if>
+                <if test="i.pushDeptName != null and i.pushDeptName != ''">
+                    #{i.pushDeptName},
+                </if>
+                <if test="i.receiveUserId != null">
+                    #{i.receiveUserId},
+                </if>
+                <if test="i.receiveUserName != null and i.receiveUserName != ''">
+                    #{i.receiveUserName},
+                </if>
+                <if test="i.receiveDeptId != null">
+                    #{i.receiveDeptId},
+                </if>
+                <if test="i.receiveDeptName != null and i.receiveDeptName != ''">
+                    #{i.receiveDeptName},
+                </if>
+                <if test="i.pushStatus != null and i.pushStatus != ''">
+                    #{i.pushStatus},
+                </if>
+                <if test="i.processTime != null">
+                    #{i.processTime},
+                </if>
+                <if test="i.pushRemark != null and i.pushRemark != ''">
+                    #{i.pushRemark},
+                </if>
+                <if test="i.refuseReason != null and i.refuseReason != ''">
+                    #{i.refuseReason},
+                </if>
+                <if test="i.id != null">
+                    #{i.id},
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    #{i.remark},
+                </if>
+                <if test="i.createTime != null">
+                    #{i.createTime},
+                </if>
+                <if test="i.cpyId != null">
+                    #{i.cpyId},
+                </if>
+            </trim>
+        </foreach>
+    </insert>
+
+    <!-- 批量更新数据信息 -->
+    <update id="batchUpdate" parameterType="java.util.List">
+        <foreach collection="list" item="i" index="index" separator=";">
+            UPDATE t_boms_crm_industry_customer_push
+            <trim prefix="set" suffixOverrides=",">
+                <if test="i.cusId != null">
+                    cus_id = #{i.cusId},
+                </if>
+                <if test="i.pushUserId != null">
+                    push_user_id = #{i.pushUserId},
+                </if>
+                <if test="i.pushUserName != null and i.pushUserName != ''">
+                    push_user_name = #{i.pushUserName},
+                </if>
+                <if test="i.pushDeptId != null">
+                    push_dept_id = #{i.pushDeptId},
+                </if>
+                <if test="i.pushDeptName != null and i.pushDeptName != ''">
+                    push_dept_name = #{i.pushDeptName},
+                </if>
+                <if test="i.receiveUserId != null">
+                    receive_user_id = #{i.receiveUserId},
+                </if>
+                <if test="i.receiveUserName != null and i.receiveUserName != ''">
+                    receive_user_name = #{i.receiveUserName},
+                </if>
+                <if test="i.receiveDeptId != null">
+                    receive_dept_id = #{i.receiveDeptId},
+                </if>
+                <if test="i.receiveDeptName != null and i.receiveDeptName != ''">
+                    receive_dept_name = #{i.receiveDeptName},
+                </if>
+                <if test="i.pushStatus != null and i.pushStatus != ''">
+                    push_status = #{i.pushStatus},
+                </if>
+                <if test="i.processTime != null">
+                    process_time = #{i.processTime},
+                </if>
+                <if test="i.pushRemark != null and i.pushRemark != ''">
+                    push_remark = #{i.pushRemark},
+                </if>
+                <if test="i.refuseReason != null and i.refuseReason != ''">
+                    refuse_reason = #{i.refuseReason},
+                </if>
+                <if test="i.id != null">
+                    id = #{i.id},
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    remark = #{i.remark},
+                </if>
+                <if test="i.createTime != null">
+                    create_time = #{i.createTime},
+                </if>
+                <if test="i.cpyId != null">
+                    cpy_id = #{i.cpyId},
+                </if>
+            </trim>
+            <trim prefix="where" prefixOverrides="AND|OR">
+                id = #{i.id}
+                <if test="i.cpyId != null">
+                    AND cpy_id = #{i.cpyId}
+                </if>
+            </trim>
+        </foreach>
+    </update>
+
+    <!-- 通过主键批量物理删除数据 -->
+    <delete id="batchDeleteByIds" parameterType="java.util.List">
+        DELETE FROM t_boms_crm_industry_customer_push WHERE ID IN
+        <foreach collection="list" item="i" open="(" separator="," close=")">
+            #{i}
+        </foreach>
+    </delete>
+
+    <!-- 通过条件删除指定数据-->
+    <delete id="deleteByMap" parameterType="map">
+        delete from t_boms_crm_industry_customer_push t
+        <include refid="selectSql"></include>
+    </delete>
+    <!--执行本地更新 -->
+    <update id="updateByNativeSql" parameterType="string">
+        ${value}
+    </update>
+
+    <!-- 根据原生Sql查询记录 -->
+    <select id="selectByNativeSql" parameterType="string" resultMap="BaseResultMap">
+        ${value}
+    </select>
+
+    <!-- 根据原生SQL查询单条记录-->
+    <select id="selectOneByNativeSql" parameterType="string" resultMap="BaseResultMap">
+        ${value}
+    </select>
+
+    <!-- 根据原生Sql统计数量 -->
+    <select id="countByNativeSql" parameterType="string" resultType="int">
+        ${value}
+    </select>
+
+    <!-- 通用脚本查询条件 -->
+    <sql id="selectSql">
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="authReceiveDeptIds != null or authPushDeptIds!=null or authPushUserId!=null or authReceiveUserId!=null ">
+
+                AND
+                <trim prefix="(" suffix=")" prefixOverrides="AND|OR">
+                    <if test="authReceiveDeptIds != null">
+                        OR t.receive_dept_id in
+                        <foreach collection="authReceiveDeptIds" open="(" separator="," close=")" item="item">
+                            #{item}
+                        </foreach>
+                    </if>
+                    <if test="authPushDeptIds != null">
+                        OR t.push_dept_id in
+                        <foreach collection="authPushDeptIds" open="(" separator="," close=")" item="item">
+                            #{item}
+                        </foreach>
+                    </if>
+                    <if test="authPushUserId != null">
+                        OR t.push_user_id = #{authPushUserId}
+                    </if>
+                    <if test="authReceiveUserId != null">
+                        OR t.receive_user_id = #{authReceiveUserId}
+                    </if>
+                </trim>
+            </if>
+
+            <if test="keyword != null">
+                AND (
+                t.push_user_name like '%'||#{keyword}||'%'
+                or t.push_dept_name like '%'||#{keyword}||'%'
+                or t.receive_user_name like '%'||#{keyword}||'%'
+                or t.receive_dept_name like '%'||#{keyword}||'%'
+                or t.push_remark like '%'||#{keyword}||'%'
+                or c.cus_phone like '%'||#{keyword}||'%'
+                or c.company like '%'||#{keyword}||'%'
+                or c.product like '%'||#{keyword}||'%'
+                or c.cus_name like '%'||#{keyword}||'%'
+                or c.owner_name like '%'||#{keyword}||'%'
+                or c.owner_dept_name like '%'||#{keyword}||'%'
+                or c.area_string like '%'||#{keyword}||'%'
+                )
+            </if>
+
+
+            <if test="cusId != null">
+                AND t.cus_id = #{cusId}
+            </if>
+            <if test="pushUserId != null">
+                AND t.push_user_id = #{pushUserId}
+            </if>
+            <if test="pushUserName != null">
+                AND t.push_user_name = #{pushUserName}
+            </if>
+            <if test="pushDeptId != null">
+                AND t.push_dept_id = #{pushDeptId}
+            </if>
+            <if test="pushDeptName != null">
+                AND t.push_dept_name = #{pushDeptName}
+            </if>
+            <if test="receiveUserId != null">
+                AND t.receive_user_id = #{receiveUserId}
+            </if>
+            <if test="receiveUserName != null">
+                AND t.receive_user_name = #{receiveUserName}
+            </if>
+            <if test="receiveDeptId != null">
+                AND t.receive_dept_id = #{receiveDeptId}
+            </if>
+            <if test="receiveDeptName != null">
+                AND t.receive_dept_name = #{receiveDeptName}
+            </if>
+            <if test="pushStatus != null">
+                AND t.push_status = #{pushStatus}
+            </if>
+            <if test="processTimeStart != null">
+                AND t.process_time <![CDATA[ >= ]]> #{processTimeStart}
+            </if>
+            <if test="processTimeEnd != null">
+                AND t.process_time <![CDATA[ <= ]]> #{processTimeEnd}
+            </if>
+            <if test="pushRemark != null">
+                AND t.push_remark = #{pushRemark}
+            </if>
+            <if test="refuseReason != null">
+                AND t.refuse_reason = #{refuseReason}
+            </if>
+            <if test="id != null">
+                AND t.id = #{id}
+            </if>
+            <if test="remark != null">
+                AND t.remark = #{remark}
+            </if>
+            <if test="createTimeStart != null">
+                AND t.create_time <![CDATA[ >= ]]> #{createTimeStart}
+            </if>
+            <if test="createTimeEnd != null">
+                AND t.create_time <![CDATA[ <= ]]> #{createTimeEnd}
+            </if>
+            <if test="cpyId != null">
+                AND t.cpy_id = #{cpyId}
+            </if>
+        </trim>
+    </sql>
+
+    <!-- 查询唯一的信息 -->
+    <select id="selectUniqueByProp" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT t.*,
+        c.id as c_id,
+        c.company as c_company,
+        c.industry as c_industry,
+        c.product as c_product,
+        c.need_acreage as c_need_acreage,
+        c.need_price as c_need_price,
+        c.price_unit as c_price_unit,
+        c.need_layer as c_need_layer,
+        c.layer_height as c_layer_height,
+        c.need_voltage as c_need_voltage,
+        c.enter_time as c_enter_time,
+        c.rent_long as c_rent_long,
+        c.fire_device_type as c_fire_device_type,
+        c.need_eia as c_need_eia,
+        c.need_register as c_need_register,
+        c.need_certificate as c_need_certificate,
+        c.need_office as c_need_office,
+        c.need_single_building as c_need_single_building,
+        c.need_single_park as c_need_single_park,
+        c.cus_name as c_cus_name,
+        c.cus_phone as c_cus_phone,
+        c.sex as c_sex,
+        c.post as c_post,
+        c.house_use_type as c_house_use_type,
+        c.cus_source as c_cus_source,
+        c.cus_owner_type as c_cus_owner_type,
+        c.cus_status as c_cus_status,
+        c.area_string as c_area_string,
+        c.remark as c_remark
+        from t_boms_crm_industry_customer_push t
+        left join t_boms_crm_industry_customer c on c.id = t.cus_id
+
+        <include refid="selectSql"/>
+    </select>
+
+    <!--查询字段-->
+    <select id="selectUniqueByPropColumns" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT
+        <choose>
+            <when test="_columns != null">
+                <foreach collection="_columns" separator="," item="item">
+                    ${item}
+                </foreach>
+            </when>
+            <otherwise>
+                t.*
+            </otherwise>
+        </choose>
+        from t_boms_crm_industry_customer_push t
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="countByMap" parameterType="java.util.Map" resultType="int">
+        SELECT count(*) FROM t_boms_crm_industry_customer_push t
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息 -->
+    <select id="selectByMap" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT t.*,
+        c.id as c_id,
+        c.company as c_company,
+        c.industry as c_industry,
+        c.product as c_product,
+        c.need_acreage as c_need_acreage,
+        c.need_price as c_need_price,
+        c.price_unit as c_price_unit,
+        c.need_layer as c_need_layer,
+        c.layer_height as c_layer_height,
+        c.need_voltage as c_need_voltage,
+        c.enter_time as c_enter_time,
+        c.rent_long as c_rent_long,
+        c.fire_device_type as c_fire_device_type,
+        c.need_eia as c_need_eia,
+        c.need_register as c_need_register,
+        c.need_certificate as c_need_certificate,
+        c.need_office as c_need_office,
+        c.need_single_building as c_need_single_building,
+        c.need_single_park as c_need_single_park,
+        c.cus_name as c_cus_name,
+        c.cus_phone as c_cus_phone,
+        c.sex as c_sex,
+        c.post as c_post,
+        c.house_use_type as c_house_use_type,
+        c.cus_source as c_cus_source,
+        c.cus_owner_type as c_cus_owner_type,
+        c.cus_status as c_cus_status,
+        c.area_string as c_area_string,
+        c.remark as c_remark
+        from t_boms_crm_industry_customer_push t
+        left join t_boms_crm_industry_customer c on c.id = t.cus_id
+
+        <include refid="selectSql"/>
+        <if test="orderBy != null">
+            ORDER BY ${orderBy}
+        </if>
+        <if test="order != null">
+            ${order}
+        </if>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="selectByMapCount" parameterType="java.util.Map" resultType="int">
+        SELECT count(*)
+        from t_boms_crm_industry_customer_push t
+        left join t_boms_crm_industry_customer c on c.id = t.cus_id
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息 -->
+    <select id="selectByMapSimple" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT
+        <choose>
+            <when test="_columns != null">
+                <foreach collection="_columns" separator="," item="item">
+                    ${item}
+                </foreach>
+            </when>
+            <otherwise>
+                t.*
+            </otherwise>
+        </choose>
+        from t_boms_crm_industry_customer_push t
+        <include refid="selectSql"/>
+        <if test="orderBy != null">
+            ORDER BY ${orderBy}
+        </if>
+        <if test="order != null">
+            ${order}
+        </if>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="selectByMapSimpleCount" parameterType="java.util.Map" resultType="int">
+        SELECT count(*) from t_boms_crm_industry_customer_push t
+        <include refid="selectSql"/>
+    </select>
+</mapper>

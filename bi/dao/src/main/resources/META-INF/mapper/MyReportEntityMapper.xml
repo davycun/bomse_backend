@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cii.bomse.bi.entity.MyReportEntity">
+
+    <resultMap id="BaseResultMap" type="com.cii.bomse.bi.entity.MyReportEntity">
+        <result column="customer_count" property="customerCount" jdbcType="NUMERIC" javaType="float"/>
+        <result column="floor_count" property="floorCount" jdbcType="NUMERIC" javaType="float"/>
+        <result column="order_count" property="orderCount" jdbcType="NUMERIC" javaType="float"/>
+        <result column="divide_amount" property="divideAmount" jdbcType="NUMERIC" javaType="float"/>
+        <result column="id" property="id" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+    </resultMap>
+
+    <!-- 通用脚本查询条件 -->
+    <sql id="selectSql">
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="createTimeStart != null">
+                AND t.create_time <![CDATA[ >= ]]> #{createTimeStart}
+            </if>
+            <if test="createTimeEnd != null">
+                AND t.create_time <![CDATA[ <= ]]> #{createTimeEnd}
+            </if>
+            <if test="createId != null">
+                AND t.create_id = #{createId}
+            </if>
+            <if test="createDeptId != null">
+                AND t.create_dept_id = #{createDeptId}
+            </if>
+            <if test="createDeptIds != null">
+                AND t.create_dept_id in
+                <foreach collection="createDeptIds" open="(" separator="," close=")" item="item">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="ownerId != null">
+                AND t.owner_id = #{ownerId}
+            </if>
+            <if test="ownerDeptId != null">
+                AND t.owner_dept_id = #{ownerDeptId}
+            </if>
+            <if test="ownerDeptIds != null">
+                AND t.owner_dept_id in
+                <foreach collection="ownerDeptIds" open="(" separator="," close=")" item="item">
+                    #{item}
+                </foreach>
+            </if>
+
+            <!--订单条件-->
+            <if test="orderTimeStart != null">
+                AND t.order_time <![CDATA[ >= ]]> #{orderTimeStart}
+            </if>
+            <if test="orderTimeEnd != null">
+                AND t.order_time <![CDATA[ <= ]]> #{orderTimeEnd}
+            </if>
+        </trim>
+    </sql>
+
+    <select id="myReportCustomerCount" parameterType="java.util.Map" resultType="int">
+        select count(*) from t_boms_crm_industry_customer t
+        <include refid="selectSql"></include>
+    </select>
+    <select id="myReportParkCount" parameterType="java.util.Map" resultType="int">
+        select count(*) from t_boms_house_industry_park t
+        <include refid="selectSql"></include>
+    </select>
+    <select id="myReportFloorCount" parameterType="java.util.Map" resultType="int">
+        select count(*) from t_boms_house_industry_floor t
+        <include refid="selectSql"></include>
+    </select>
+    <select id="myReportOrderCount" parameterType="java.util.Map" resultType="int">
+        select count(*) from t_boms_trade_industry_order t
+        <include refid="selectSql"></include>
+    </select>
+    <select id="myReportDivideAmount" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select sum(t.divide_amount) as divide_amount from t_boms_trade_industry_order_divide t
+        <include refid="selectSql"></include>
+    </select>
+
+</mapper>

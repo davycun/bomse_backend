@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cii.bomse.bi.entity.CustomerStatisticReportEntity">
+
+    <resultMap id="BaseResultMap" type="com.cii.bomse.bi.entity.CustomerStatisticReportEntity">
+        <result column="followup_customer_count" property="followupCustomerCount" jdbcType="NUMERIC"
+                javaType="java.lang.Float"/>
+        <result column="hide_customer_count" property="hideCustomerCount" jdbcType="NUMERIC"
+                javaType="java.lang.Float"/>
+        <result column="customer_has_rent_count" property="customerHasRentCount" jdbcType="NUMERIC"
+                javaType="java.lang.Float"/>
+        <result column="wait_judge_customer_count" property="waitJudgeCustomerCount" jdbcType="NUMERIC"
+                javaType="java.lang.Float"/>
+        <result column="wait_survey_customer_count" property="waitSurveyCustomerCount" jdbcType="NUMERIC"
+                javaType="java.lang.Float"/>
+        <result column="has_survey_customer_count" property="hasSurveyCustomerCount" jdbcType="NUMERIC"
+                javaType="java.lang.Float"/>
+        <result column="customer_intention_you_count" property="customerIntentionYouCount" jdbcType="NUMERIC"
+                javaType="java.lang.Float"/>
+        <result column="customer_intention_liang_count" property="customerIntentionLiangCount" jdbcType="NUMERIC"
+                javaType="java.lang.Float"/>
+        <result column="customer_intention_zhong_count" property="customerIntentionZhongCount" jdbcType="NUMERIC"
+                javaType="java.lang.Float"/>
+        <result column="customer_intention_cha_count" property="customerIntentionChaCount" jdbcType="NUMERIC"
+                javaType="java.lang.Float"/>
+        <result column="customer_intention_unknown_count" property="customerIntentionUnknownCount" jdbcType="NUMERIC"
+                javaType="java.lang.Float"/>
+        <result column="customer_not_followup3_day_count" property="customerNotFollowup3DayCount" jdbcType="NUMERIC"
+                javaType="java.lang.Float"/>
+        <result column="customer_not_followup7_day_count" property="customerNotFollowup7DayCount" jdbcType="NUMERIC"
+                javaType="java.lang.Float"/>
+        <result column="name" property="name" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="id" property="id" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+
+        <result column="count" property="count" jdbcType="NUMERIC" javaType="java.lang.Float"/>
+    </resultMap>
+
+    <!-- 根据原生Sql查询记录 -->
+    <select id="selectByNativeSql" parameterType="string" resultMap="BaseResultMap">
+        ${value}
+    </select>
+
+    <!-- 根据原生SQL查询单条记录-->
+    <select id="selectOneByNativeSql" parameterType="string" resultMap="BaseResultMap">
+        ${value}
+    </select>
+
+    <!-- 根据原生Sql统计数量 -->
+    <select id="countByNativeSql" parameterType="string" resultType="int">
+        ${value}
+    </select>
+
+    <!-- 通用脚本查询条件 -->
+    <sql id="selectSql">
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="cusStatus != null">
+                AND t.cus_status = #{cusStatus}
+            </if>
+            <if test="cusStatuses != null and cusStatuses.size > 0">
+                AND t.cus_status in
+                <foreach collection="cusStatuses" open="(" separator="," close=")" item="item">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="cusProp != null">
+                AND t.cus_prop = #{cusProp}
+            </if>
+            <if test="rentStatus != null">
+                AND t.rent_status = #{rentStatus}
+            </if>
+            <if test="intentionType != null">
+                AND t.intention_type = #{intentionType}
+            </if>
+            <if test="lastFollowupTimeEnd != null">
+                AND t.last_followup_time <![CDATA[ <= ]]> #{lastFollowupTimeEnd}
+            </if>
+            <if test="ownerId != null">
+                AND t.owner_id = #{ownerId}
+            </if>
+            <if test="ownerDeptId != null">
+                AND t.owner_dept_id = #{ownerDeptId}
+            </if>
+            <if test="ownerDeptIds != null">
+                AND t.owner_dept_id in
+                <foreach collection="ownerDeptIds" open="(" separator="," close=")" item="item">
+                    #{item}
+                </foreach>
+            </if>
+
+        </trim>
+    </sql>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="countByMap" parameterType="java.util.Map" resultType="int">
+        select count(*) as ct from t_boms_crm_industry_customer t
+        <include refid="selectSql"/>
+    </select>
+
+
+
+    <!-- 通过指定条件查询信息 -->
+    <select id="reportDeptEmployee" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select t.owner_id as id, count(*) as count
+        from t_boms_crm_industry_customer t
+        <include refid="selectSql"/>
+        group by t.owner_id
+    </select>
+
+    <!-- 通过指定条件查询信息 -->
+    <select id="reportDeptEmployeeHide" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select t.owner_id as id, count(*) as count
+        from t_boms_crm_industry_customer t
+        <include refid="selectSql"/>
+        group by t.owner_id
+    </select>
+
+    <select id="reportChildrenDept" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select t.owner_dept_id as id, count(*) as count
+        from t_boms_crm_industry_customer t
+        <include refid="selectSql"/>
+        group by t.owner_dept_id
+    </select>
+    <select id="reportChildrenDeptHide" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select t.owner_dept_id as id, count(*) as count
+        from t_boms_crm_industry_customer t
+        <include refid="selectSql"/>
+        group by t.owner_dept_id
+    </select>
+
+
+</mapper>

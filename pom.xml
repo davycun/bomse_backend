@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <groupId>com.ciiframework</groupId>
+        <artifactId>parent</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.cii.bomse</groupId>
+    <artifactId>bomse</artifactId>
+    <packaging>pom</packaging>
+    <name>bomse</name>
+    <version>1.0-SNAPSHOT</version>
+
+    <modules>
+        <module>base</module>
+        <module>common</module>
+        <module>hrm</module>
+        <module>srv</module>
+        <module>ums</module>
+        <module>crm</module>
+        <module>bi</module>
+        <module>trade</module>
+        <module>house</module>
+    </modules>
+    <properties>
+        <cii_version>1.0-SNAPSHOT</cii_version>
+        <!--<nexus_content_public_url>http://www.wzitech.com/nexus/content/groups/public/</nexus_content_public_url>-->
+        <nexus_kupat_public_url>http://nexus.gniuu.com/nexus/content/groups/gniuu-nexus/</nexus_kupat_public_url>
+
+        <!--<nexus.content.public.url>http://nexus.kupat.cn/nexus/content/groups/public/</nexus.content.public.url>-->
+        <nexus.deploy.snapshot.url>http://nexus.gniuu.com/nexus/content/repositories/snapshots/</nexus.deploy.snapshot.url>
+        <nexus.deploy.release.url>http://nexus.gniuu.com/nexus/content/repositories/releases/</nexus.deploy.release.url>
+    </properties>
+
+    <repositories>
+        <!--<repository>
+            <id>wzitech_nexus</id>
+            <name>Team Nexus Repository</name>
+            <url>${nexus_content_public_url}</url>
+            <snapshots>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+            <releases>
+                <updatePolidcy>always</updatePolicy>
+            </releases>
+        </repository>-->
+
+        <repository>
+            <id>kupat_nexus</id>
+            <name>Team Nexus Repository</name>
+            <url>${nexus_kupat_public_url}</url>
+            <snapshots>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+            <releases>
+                <updatePolicy>always</updatePolicy>
+            </releases>
+        </repository>
+        <repository>
+            <id>central</id>
+            <name>Maven Official Repository</name>
+            <url>http://repo1.maven.org/maven2</url>
+            <snapshots>
+                <enabled>false</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+            <releases>
+                <updatePolicy>always</updatePolicy>
+            </releases>
+        </repository>
+    </repositories>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.ciiframework</groupId>
+                <artifactId>cii-core</artifactId>
+                <version>${cii_version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ciiframework</groupId>
+                <artifactId>cii-common</artifactId>
+                <version>${cii_version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ciiframework</groupId>
+                <artifactId>cii-user</artifactId>
+                <version>${cii_version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ciiframework</groupId>
+                <artifactId>cii-file</artifactId>
+                <version>${cii_version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ciiframework</groupId>
+                <artifactId>cii-dictionary</artifactId>
+                <version>${cii_version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ciiframework</groupId>
+                <artifactId>cii-log</artifactId>
+                <version>${cii_version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>

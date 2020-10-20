@@ -1,0 +1,644 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cii.bomse.house.industry.entity.BuildingIndustryEntity">
+
+    <resultMap id="BaseResultMap" type="com.cii.bomse.house.industry.entity.BuildingIndustryEntity">
+        <result column="park_id" property="parkId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="bd_name" property="bdName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="bd_name_desc" property="bdNameDesc" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="structure_type" property="structureType" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="single_floor" property="singleFloor" jdbcType="BOOLEAN" javaType="java.lang.Boolean"/>
+        <result column="has_lift" property="hasLift" jdbcType="BOOLEAN" javaType="java.lang.Boolean"/>
+        <result column="lift_count" property="liftCount" jdbcType="NUMERIC" javaType="java.lang.Integer"/>
+        <result column="lift_bearing" property="liftBearing" jdbcType="NUMERIC" javaType="java.lang.Float"/>
+        <result column="has_railway" property="hasRailway" jdbcType="BOOLEAN" javaType="java.lang.Boolean"/>
+        <result column="railway_type" property="railwayType" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="railway_height" property="railwayHeight" jdbcType="NUMERIC" javaType="java.lang.Float"/>
+        <result column="railway_width" property="railwayWidth" jdbcType="NUMERIC" javaType="java.lang.Float"/>
+        <result column="has_canopy" property="hasCanopy" jdbcType="BOOLEAN" javaType="java.lang.Boolean"/>
+        <result column="canopy_width" property="canopyWidth" jdbcType="NUMERIC" javaType="java.lang.Float"/>
+        <result column="upload_type" property="uploadType" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="floor_count" property="floorCount" jdbcType="NUMERIC" javaType="java.lang.Integer"/>
+        <result column="id" property="id" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="owner_id" property="ownerId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="owner_name" property="ownerName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="owner_dept_id" property="ownerDeptId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="owner_dept_name" property="ownerDeptName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="create_id" property="createId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="create_name" property="createName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="create_dept_id" property="createDeptId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="create_dept_name" property="createDeptName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="last_update_id" property="lastUpdateId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="last_update_name" property="lastUpdateName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        <result column="is_deleted" property="isDeleted" jdbcType="BOOLEAN" javaType="java.lang.Boolean"/>
+        <result column="cpy_id" property="cpyId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+
+        <association property="park" columnPrefix="p_"
+                     resultMap="com.cii.bomse.house.industry.entity.ParkIndustryEntity.BaseResultMap">
+        </association>
+        <collection property="floorList" columnPrefix="f_"
+                    resultMap="com.cii.bomse.house.industry.entity.FloorIndustryEntity.BaseResultMap">
+        </collection>
+    </resultMap>
+
+    <!-- 批量新增信息到数据库中 -->
+    <insert id="batchInsert" parameterType="java.util.List">
+        <foreach collection="list" item="i" separator=";">
+            INSERT INTO t_boms_house_industry_building
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="i.parkId != null">
+                    park_id,
+                </if>
+                <if test="i.bdName != null and i.bdName != ''">
+                    bd_name,
+                </if>
+                <if test="i.bdNameDesc != null and i.bdNameDesc != ''">
+                    bd_name_desc,
+                </if>
+                <if test="i.structureType != null and i.structureType != ''">
+                    structure_type,
+                </if>
+                <if test="i.singleFloor != null">
+                    single_floor,
+                </if>
+                <if test="i.hasLift != null">
+                    has_lift,
+                </if>
+                <if test="i.liftCount != null">
+                    lift_count,
+                </if>
+                <if test="i.liftBearing != null">
+                    lift_bearing,
+                </if>
+                <if test="i.hasRailway != null">
+                    has_railway,
+                </if>
+                <if test="i.railwayType != null and i.railwayType != ''">
+                    railway_type,
+                </if>
+                <if test="i.railwayHeight != null">
+                    railway_height,
+                </if>
+                <if test="i.railwayWidth != null">
+                    railway_width,
+                </if>
+                <if test="i.hasCanopy != null">
+                    has_canopy,
+                </if>
+                <if test="i.canopyWidth != null">
+                    canopy_width,
+                </if>
+                <if test="i.uploadType != null and i.uploadType != ''">
+                    upload_type,
+                </if>
+                <if test="i.floorCount != null">
+                    floor_count,
+                </if>
+                <if test="i.id != null">
+                    id,
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    remark,
+                </if>
+                <if test="i.ownerId != null">
+                    owner_id,
+                </if>
+                <if test="i.ownerName != null and i.ownerName != ''">
+                    owner_name,
+                </if>
+                <if test="i.ownerDeptId != null">
+                    owner_dept_id,
+                </if>
+                <if test="i.ownerDeptName != null and i.ownerDeptName != ''">
+                    owner_dept_name,
+                </if>
+                <if test="i.createId != null">
+                    create_id,
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name,
+                </if>
+                <if test="i.createDeptId != null">
+                    create_dept_id,
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    create_dept_name,
+                </if>
+                <if test="i.lastUpdateId != null">
+                    last_update_id,
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name,
+                </if>
+                <if test="i.createTime != null">
+                    create_time,
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time,
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted,
+                </if>
+                <if test="i.cpyId != null">
+                    cpy_id,
+                </if>
+
+            </trim>
+            <trim prefix="values (" suffix=")" suffixOverrides=",">
+
+                <if test="i.parkId != null">
+                    #{i.parkId},
+                </if>
+                <if test="i.bdName != null and i.bdName != ''">
+                    #{i.bdName},
+                </if>
+                <if test="i.bdNameDesc != null and i.bdNameDesc != ''">
+                    #{i.bdNameDesc},
+                </if>
+                <if test="i.structureType != null and i.structureType != ''">
+                    #{i.structureType},
+                </if>
+                <if test="i.singleFloor != null">
+                    #{i.singleFloor},
+                </if>
+                <if test="i.hasLift != null">
+                    #{i.hasLift},
+                </if>
+                <if test="i.liftCount != null">
+                    #{i.liftCount},
+                </if>
+                <if test="i.liftBearing != null">
+                    #{i.liftBearing},
+                </if>
+                <if test="i.hasRailway != null">
+                    #{i.hasRailway},
+                </if>
+                <if test="i.railwayType != null and i.railwayType != ''">
+                    #{i.railwayType},
+                </if>
+                <if test="i.railwayHeight != null">
+                    #{i.railwayHeight},
+                </if>
+                <if test="i.railwayWidth != null">
+                    #{i.railwayWidth},
+                </if>
+                <if test="i.hasCanopy != null">
+                    #{i.hasCanopy},
+                </if>
+                <if test="i.canopyWidth != null">
+                    #{i.canopyWidth},
+                </if>
+                <if test="i.uploadType != null and i.uploadType != ''">
+                    #{i.uploadType},
+                </if>
+                <if test="i.floorCount != null">
+                    #{i.floorCount},
+                </if>
+                <if test="i.id != null">
+                    #{i.id},
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    #{i.remark},
+                </if>
+                <if test="i.ownerId != null">
+                    #{i.ownerId},
+                </if>
+                <if test="i.ownerName != null and i.ownerName != ''">
+                    #{i.ownerName},
+                </if>
+                <if test="i.ownerDeptId != null">
+                    #{i.ownerDeptId},
+                </if>
+                <if test="i.ownerDeptName != null and i.ownerDeptName != ''">
+                    #{i.ownerDeptName},
+                </if>
+                <if test="i.createId != null">
+                    #{i.createId},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    #{i.createName},
+                </if>
+                <if test="i.createDeptId != null">
+                    #{i.createDeptId},
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    #{i.createDeptName},
+                </if>
+                <if test="i.lastUpdateId != null">
+                    #{i.lastUpdateId},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    #{i.isDeleted},
+                </if>
+                <if test="i.cpyId != null">
+                    #{i.cpyId},
+                </if>
+            </trim>
+        </foreach>
+    </insert>
+
+    <!-- 批量更新数据信息 -->
+    <update id="batchUpdate" parameterType="java.util.List">
+        <foreach collection="list" item="i" index="index" separator=";">
+            UPDATE t_boms_house_industry_building
+            <trim prefix="set" suffixOverrides=",">
+                <if test="i.parkId != null">
+                    park_id = #{i.parkId},
+                </if>
+                <if test="i.bdName != null and i.bdName != ''">
+                    bd_name = #{i.bdName},
+                </if>
+                <if test="i.bdNameDesc != null and i.bdNameDesc != ''">
+                    bd_name_desc = #{i.bdNameDesc},
+                </if>
+                <if test="i.structureType != null and i.structureType != ''">
+                    structure_type = #{i.structureType},
+                </if>
+                <if test="i.singleFloor != null">
+                    single_floor = #{i.singleFloor},
+                </if>
+                <if test="i.hasLift != null">
+                    has_lift = #{i.hasLift},
+                </if>
+                <if test="i.liftCount != null">
+                    lift_count = #{i.liftCount},
+                </if>
+                <if test="i.liftBearing != null">
+                    lift_bearing = #{i.liftBearing},
+                </if>
+                <if test="i.hasRailway != null">
+                    has_railway = #{i.hasRailway},
+                </if>
+                <if test="i.railwayType != null and i.railwayType != ''">
+                    railway_type = #{i.railwayType},
+                </if>
+                <if test="i.railwayHeight != null">
+                    railway_height = #{i.railwayHeight},
+                </if>
+                <if test="i.railwayWidth != null">
+                    railway_width = #{i.railwayWidth},
+                </if>
+                <if test="i.hasCanopy != null">
+                    has_canopy = #{i.hasCanopy},
+                </if>
+                <if test="i.canopyWidth != null">
+                    canopy_width = #{i.canopyWidth},
+                </if>
+                <if test="i.uploadType != null and i.uploadType != ''">
+                    upload_type = #{i.uploadType},
+                </if>
+                <if test="i.floorCount != null">
+                    floor_count = #{i.floorCount},
+                </if>
+                <if test="i.id != null">
+                    id = #{i.id},
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    remark = #{i.remark},
+                </if>
+                <if test="i.ownerId != null">
+                    owner_id = #{i.ownerId},
+                </if>
+                <if test="i.ownerName != null and i.ownerName != ''">
+                    owner_name = #{i.ownerName},
+                </if>
+                <if test="i.ownerDeptId != null">
+                    owner_dept_id = #{i.ownerDeptId},
+                </if>
+                <if test="i.ownerDeptName != null and i.ownerDeptName != ''">
+                    owner_dept_name = #{i.ownerDeptName},
+                </if>
+                <if test="i.createId != null">
+                    create_id = #{i.createId},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name = #{i.createName},
+                </if>
+                <if test="i.createDeptId != null">
+                    create_dept_id = #{i.createDeptId},
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    create_dept_name = #{i.createDeptName},
+                </if>
+                <if test="i.lastUpdateId != null">
+                    last_update_id = #{i.lastUpdateId},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name = #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    create_time = #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time = #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted = #{i.isDeleted},
+                </if>
+                <if test="i.cpyId != null">
+                    cpy_id = #{i.cpyId},
+                </if>
+            </trim>
+            <trim prefix="where" prefixOverrides="AND|OR">
+                id = #{i.id}
+                <if test="i.cpyId != null">
+                    AND cpy_id = #{i.cpyId}
+                </if>
+            </trim>
+        </foreach>
+    </update>
+
+    <!-- 通过主键批量物理删除数据 -->
+    <delete id="batchDeleteByIds" parameterType="java.util.List">
+        DELETE FROM t_boms_house_industry_building WHERE ID IN
+        <foreach collection="list" item="i" open="(" separator="," close=")">
+            #{i}
+        </foreach>
+    </delete>
+
+    <!-- 通过条件删除指定数据-->
+    <delete id="deleteByMap" parameterType="map">
+        delete from t_boms_house_industry_building t
+        <include refid="selectSql"></include>
+    </delete>
+    <!--执行本地更新 -->
+    <update id="updateByNativeSql" parameterType="string">
+        ${value}
+    </update>
+
+    <!-- 根据原生Sql查询记录 -->
+    <select id="selectByNativeSql" parameterType="string" resultMap="BaseResultMap">
+        ${value}
+    </select>
+
+    <!-- 根据原生SQL查询单条记录-->
+    <select id="selectOneByNativeSql" parameterType="string" resultMap="BaseResultMap">
+        ${value}
+    </select>
+
+    <!-- 根据原生Sql统计数量 -->
+    <select id="countByNativeSql" parameterType="string" resultType="int">
+        ${value}
+    </select>
+
+    <!-- 通用脚本查询条件 -->
+    <sql id="selectSql">
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="keyword != null">
+                AND (
+                t.bd_name like '%'||#{keyword}||'%'
+                or t.bd_name_desc like '%'||#{keyword}||'%'
+                or p.city_name like '%'||#{keyword}||'%'
+                or p.region_name like '%'||#{keyword}||'%'
+                or p.street_name like '%'||#{keyword}||'%'
+                or p.community_name like '%'||#{keyword}||'%'
+                or p.address like '%'||#{keyword}||'%'
+                or p.pk_name like '%'||#{keyword}||'%'
+                )
+            </if>
+            <if test="parkId != null">
+                AND t.park_id = #{parkId}
+            </if>
+            <if test="bdName != null">
+                AND t.bd_name = #{bdName}
+            </if>
+            <if test="bdNameDesc != null">
+                AND t.bd_name_desc = #{bdNameDesc}
+            </if>
+            <if test="structureType != null">
+                AND t.structure_type = #{structureType}
+            </if>
+            <if test="singleFloor != null">
+                AND t.single_floor = #{singleFloor}
+            </if>
+            <if test="hasLift != null">
+                AND t.has_lift = #{hasLift}
+            </if>
+            <if test="liftCountStart != null">
+                AND t.lift_count <![CDATA[ >= ]]> #{liftCountStart}
+            </if>
+            <if test="liftCountEnd != null">
+                AND t.lift_count <![CDATA[ <= ]]> #{liftCountEnd}
+            </if>
+            <if test="liftBearingStart != null">
+                AND t.lift_bearing <![CDATA[ >= ]]> #{liftBearingStart}
+            </if>
+            <if test="liftBearingEnd != null">
+                AND t.lift_bearing <![CDATA[ <= ]]> #{liftBearingEnd}
+            </if>
+            <if test="hasRailway != null">
+                AND t.has_railway = #{hasRailway}
+            </if>
+            <if test="railwayType != null">
+                AND t.railway_type = #{railwayType}
+            </if>
+            <if test="railwayHeightStart != null">
+                AND t.railway_height <![CDATA[ >= ]]> #{railwayHeightStart}
+            </if>
+            <if test="railwayHeightEnd != null">
+                AND t.railway_height <![CDATA[ <= ]]> #{railwayHeightEnd}
+            </if>
+            <if test="railwayWidthStart != null">
+                AND t.railway_width <![CDATA[ >= ]]> #{railwayWidthStart}
+            </if>
+            <if test="railwayWidthEnd != null">
+                AND t.railway_width <![CDATA[ <= ]]> #{railwayWidthEnd}
+            </if>
+            <if test="hasCanopy != null">
+                AND t.has_canopy = #{hasCanopy}
+            </if>
+            <if test="canopyWidthStart != null">
+                AND t.canopy_width <![CDATA[ >= ]]> #{canopyWidthStart}
+            </if>
+            <if test="canopyWidthEnd != null">
+                AND t.canopy_width <![CDATA[ <= ]]> #{canopyWidthEnd}
+            </if>
+            <if test="uploadType != null">
+                AND t.upload_type = #{uploadType}
+            </if>
+            <if test="floorCountStart != null">
+                AND t.floor_count <![CDATA[ >= ]]> #{floorCountStart}
+            </if>
+            <if test="floorCountEnd != null">
+                AND t.floor_count <![CDATA[ <= ]]> #{floorCountEnd}
+            </if>
+            <if test="id != null">
+                AND t.id = #{id}
+            </if>
+            <if test="remark != null">
+                AND t.remark = #{remark}
+            </if>
+            <if test="ownerId != null">
+                AND t.owner_id = #{ownerId}
+            </if>
+            <if test="ownerName != null">
+                AND t.owner_name = #{ownerName}
+            </if>
+            <if test="ownerDeptId != null">
+                AND t.owner_dept_id = #{ownerDeptId}
+            </if>
+            <if test="ownerDeptName != null">
+                AND t.owner_dept_name = #{ownerDeptName}
+            </if>
+            <if test="createId != null">
+                AND t.create_id = #{createId}
+            </if>
+            <if test="createName != null">
+                AND t.create_name = #{createName}
+            </if>
+            <if test="createDeptId != null">
+                AND t.create_dept_id = #{createDeptId}
+            </if>
+            <if test="createDeptName != null">
+                AND t.create_dept_name = #{createDeptName}
+            </if>
+            <if test="lastUpdateId != null">
+                AND t.last_update_id = #{lastUpdateId}
+            </if>
+            <if test="lastUpdateName != null">
+                AND t.last_update_name = #{lastUpdateName}
+            </if>
+            <if test="createTimeStart != null">
+                AND t.create_time <![CDATA[ >= ]]> #{createTimeStart}
+            </if>
+            <if test="createTimeEnd != null">
+                AND t.create_time <![CDATA[ <= ]]> #{createTimeEnd}
+            </if>
+            <if test="lastUpdateTimeStart != null">
+                AND t.last_update_time <![CDATA[ >= ]]> #{lastUpdateTimeStart}
+            </if>
+            <if test="lastUpdateTimeEnd != null">
+                AND t.last_update_time <![CDATA[ <= ]]> #{lastUpdateTimeEnd}
+            </if>
+            <if test="isDeleted != null">
+                AND t.is_deleted = #{isDeleted}
+            </if>
+            <if test="cpyId != null">
+                AND t.cpy_id = #{cpyId}
+            </if>
+        </trim>
+    </sql>
+
+    <!-- 查询唯一的信息 -->
+    <select id="selectUniqueByProp" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT t.*,
+        p.id as p_id,
+        p.city_id as p_city_id,
+        p.city_name as p_city_name,
+        p.region_id as p_region_id,
+        p.region_name as p_region_name,
+        p.street_id as p_street_id,
+        p.street_name as p_street_name,
+        p.community_id as p_community_id,
+        p.community_name as p_community_name,
+        p.address as p_address,
+        p.longitude as p_longitude,
+        p.latitude as p_latitude
+        from t_boms_house_industry_building t
+        left join t_boms_house_industry_park p on p.id = t.park_id
+        <include refid="selectSql"/>
+    </select>
+
+    <!--查询字段-->
+    <select id="selectUniqueByPropColumns" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT
+        <choose>
+            <when test="_columns != null">
+                <foreach collection="_columns" separator="," item="item">
+                    ${item}
+                </foreach>
+            </when>
+            <otherwise>
+                t.*
+            </otherwise>
+        </choose>
+        from t_boms_house_industry_building t
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="countByMap" parameterType="java.util.Map" resultType="int">
+        SELECT count(*)
+        FROM t_boms_house_industry_building t
+        left join t_boms_house_industry_park p on p.id = t.park_id
+
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息 -->
+    <select id="selectByMap" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT t.*,
+        p.id as p_id,
+        p.pk_name as p_pk_name,
+        p.city_id as p_city_id,
+        p.city_name as p_city_name,
+        p.region_id as p_region_id,
+        p.region_name as p_region_name,
+        p.street_id as p_street_id,
+        p.street_name as p_street_name,
+        p.community_id as p_community_id,
+        p.community_name as p_community_name,
+        p.address as p_address,
+        p.longitude as p_longitude,
+        p.latitude as p_latitude
+        from t_boms_house_industry_building t
+        left join t_boms_house_industry_park p on p.id = t.park_id
+        <include refid="selectSql"/>
+        <if test="orderBy != null">
+            ORDER BY ${orderBy}
+        </if>
+        <if test="order != null">
+            ${order}
+        </if>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="selectByMapCount" parameterType="java.util.Map" resultType="int">
+        SELECT count(*) from t_boms_house_industry_building t
+        left join t_boms_house_industry_park p on p.id = t.park_id
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息 -->
+    <select id="selectByMapSimple" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT
+        <choose>
+            <when test="_columns != null">
+                <foreach collection="_columns" separator="," item="item">
+                    ${item}
+                </foreach>
+            </when>
+            <otherwise>
+                t.*
+            </otherwise>
+        </choose>
+        from t_boms_house_industry_building t
+        <include refid="selectSql"/>
+        <if test="orderBy != null">
+            ORDER BY ${orderBy}
+        </if>
+        <if test="order != null">
+            ${order}
+        </if>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="selectByMapSimpleCount" parameterType="java.util.Map" resultType="int">
+        SELECT count(*) from t_boms_house_industry_building t
+        <include refid="selectSql"/>
+    </select>
+</mapper>

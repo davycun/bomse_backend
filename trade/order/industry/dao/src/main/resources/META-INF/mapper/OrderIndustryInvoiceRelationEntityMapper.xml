@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cii.bomse.trade.order.industry.entity.OrderIndustryInvoiceRelationEntity">
+
+    <resultMap id="BaseResultMap" type="com.cii.bomse.trade.order.industry.entity.OrderIndustryInvoiceRelationEntity">
+        <result column="back_id" property="backId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="invoice_id" property="invoiceId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="order_id" property="orderId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="id" property="id" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="cpy_id" property="cpyId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+    </resultMap>
+
+    <!-- 批量新增信息到数据库中 -->
+    <insert id="batchInsert" parameterType="java.util.List">
+        <foreach collection="list" item="i" separator=";">
+            INSERT INTO t_boms_trade_industry_order_invoice_relation
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="i.backId != null">
+                    back_id,
+                </if>
+                <if test="i.invoiceId != null">
+                    invoice_id,
+                </if>
+                <if test="i.orderId != null">
+                    order_id,
+                </if>
+                <if test="i.id != null">
+                    id,
+                </if>
+                <if test="i.cpyId != null">
+                    cpy_id,
+                </if>
+
+            </trim>
+            <trim prefix="values (" suffix=")" suffixOverrides=",">
+
+                <if test="i.backId != null">
+                    #{i.backId},
+                </if>
+                <if test="i.invoiceId != null">
+                    #{i.invoiceId},
+                </if>
+                <if test="i.orderId != null">
+                    #{i.orderId},
+                </if>
+                <if test="i.id != null">
+                    #{i.id},
+                </if>
+                <if test="i.cpyId != null">
+                    #{i.cpyId},
+                </if>
+            </trim>
+        </foreach>
+    </insert>
+
+    <!-- 批量更新数据信息 -->
+    <update id="batchUpdate" parameterType="java.util.List">
+        <foreach collection="list" item="i" index="index" separator=";">
+            UPDATE t_boms_trade_industry_order_invoice_relation
+            <trim prefix="set" suffixOverrides=",">
+                <if test="i.backId != null">
+                    back_id = #{i.backId},
+                </if>
+                <if test="i.invoiceId != null">
+                    invoice_id = #{i.invoiceId},
+                </if>
+                <if test="i.orderId != null">
+                    order_id = #{i.orderId},
+                </if>
+                <if test="i.id != null">
+                    id = #{i.id},
+                </if>
+                <if test="i.cpyId != null">
+                    cpy_id = #{i.cpyId},
+                </if>
+            </trim>
+            <trim prefix="where" prefixOverrides="AND|OR">
+                id = #{i.id}
+                <if test="i.cpyId != null">
+                    AND cpy_id = #{i.cpyId}
+                </if>
+            </trim>
+        </foreach>
+    </update>
+
+    <!-- 通过主键批量物理删除数据 -->
+    <delete id="batchDeleteByIds" parameterType="java.util.List">
+        DELETE FROM t_boms_trade_industry_order_invoice_relation WHERE ID IN
+        <foreach collection="list" item="i" open="(" separator="," close=")">
+            #{i}
+        </foreach>
+    </delete>
+
+    <!-- 通过条件删除指定数据-->
+    <delete id="deleteByMap" parameterType="map">
+        delete from t_boms_trade_industry_order_invoice_relation t
+        <include refid="selectSql"></include>
+    </delete>
+    <!--执行本地更新 -->
+    <update id="updateByNativeSql" parameterType="string">
+        ${value}
+    </update>
+
+    <!-- 根据原生Sql查询记录 -->
+    <select id="selectByNativeSql" parameterType="string" resultMap="BaseResultMap">
+        ${value}
+    </select>
+
+    <!-- 根据原生SQL查询单条记录-->
+    <select id="selectOneByNativeSql" parameterType="string" resultMap="BaseResultMap">
+        ${value}
+    </select>
+
+    <!-- 根据原生Sql统计数量 -->
+    <select id="countByNativeSql" parameterType="string" resultType="int">
+        ${value}
+    </select>
+
+    <!-- 通用脚本查询条件 -->
+    <sql id="selectSql">
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="backId != null">
+                AND t.back_id = #{backId}
+            </if>
+            <if test="invoiceId != null">
+                AND t.invoice_id = #{invoiceId}
+            </if>
+            <if test="orderId != null">
+                AND t.order_id = #{orderId}
+            </if>
+            <if test="id != null">
+                AND t.id = #{id}
+            </if>
+            <if test="cpyId != null">
+                AND t.cpy_id = #{cpyId}
+            </if>
+        </trim>
+    </sql>
+
+    <!-- 查询唯一的信息 -->
+    <select id="selectUniqueByProp" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT t.* from t_boms_trade_industry_order_invoice_relation t
+        <include refid="selectSql"/>
+    </select>
+
+    <!--查询字段-->
+    <select id="selectUniqueByPropColumns" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT
+        <choose>
+            <when test="_columns != null">
+                <foreach collection="_columns" separator="," item="item">
+                    ${item}
+                </foreach>
+            </when>
+            <otherwise>
+                t.*
+            </otherwise>
+        </choose>
+        from t_boms_trade_industry_order_invoice_relation t
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="countByMap" parameterType="java.util.Map" resultType="int">
+        SELECT count(*) FROM t_boms_trade_industry_order_invoice_relation t
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息 -->
+    <select id="selectByMap" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT t.* from t_boms_trade_industry_order_invoice_relation t
+        <include refid="selectSql"/>
+        <if test="orderBy != null">
+            ORDER BY ${orderBy}
+        </if>
+        <if test="order != null">
+            ${order}
+        </if>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="selectByMapCount" parameterType="java.util.Map" resultType="int">
+        SELECT count(*) from t_boms_trade_industry_order_invoice_relation t
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息 -->
+    <select id="selectByMapSimple" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT
+        <choose>
+            <when test="_columns != null">
+                <foreach collection="_columns" separator="," item="item">
+                    ${item}
+                </foreach>
+            </when>
+            <otherwise>
+                t.*
+            </otherwise>
+        </choose>
+        from t_boms_trade_industry_order_invoice_relation t
+        <include refid="selectSql"/>
+        <if test="orderBy != null">
+            ORDER BY ${orderBy}
+        </if>
+        <if test="order != null">
+            ${order}
+        </if>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="selectByMapSimpleCount" parameterType="java.util.Map" resultType="int">
+        SELECT count(*) from t_boms_trade_industry_order_invoice_relation t
+        <include refid="selectSql"/>
+    </select>
+</mapper>

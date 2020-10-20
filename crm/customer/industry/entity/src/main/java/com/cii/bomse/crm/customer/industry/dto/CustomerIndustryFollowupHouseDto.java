@@ -1,0 +1,7 @@
+package com.cii.bomse.crm.customer.industry.dto;
+
+import com.cii.bomse.crm.customer.industry.entity.CustomerIndustryFollowupHouseEntity;
+
+public class CustomerIndustryFollowupHouseDto extends CustomerIndustryFollowupHouseEntity {
+    
+}

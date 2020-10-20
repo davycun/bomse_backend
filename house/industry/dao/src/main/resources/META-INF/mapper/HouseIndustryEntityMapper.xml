@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cii.bomse.house.industry.entity.HouseIndustryEntity">
+
+    <resultMap id="BaseResultMap" type="com.cii.bomse.house.industry.entity.HouseIndustryEntity">
+        <result column="city_id" property="cityId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="city_name" property="cityName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="region_id" property="regionId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="region_name" property="regionName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="street_id" property="streetId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="street_name" property="streetName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="community_id" property="communityId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="community_name" property="communityName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="address" property="address" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="pk_name" property="pkName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="longitude" property="longitude" jdbcType="NUMERIC" javaType="java.lang.Double"/>
+        <result column="latitude" property="latitude" jdbcType="NUMERIC" javaType="java.lang.Double"/>
+        <result column="certificate_type" property="certificateType" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="land_use_type" property="landUseType" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="voltage" property="voltage" jdbcType="NUMERIC" javaType="java.lang.Float"/>
+        <result column="has_tax" property="hasTax" jdbcType="BOOLEAN" javaType="java.lang.Boolean"/>
+        <result column="can_registry" property="canRegistry" jdbcType="BOOLEAN" javaType="java.lang.Boolean"/>
+        <result column="has_monitor" property="hasMonitor" jdbcType="BOOLEAN" javaType="java.lang.Boolean"/>
+        <result column="has_guard" property="hasGuard" jdbcType="BOOLEAN" javaType="java.lang.Boolean"/>
+        <result column="has_canteen" property="hasCanteen" jdbcType="BOOLEAN" javaType="java.lang.Boolean"/>
+        <result column="has_office" property="hasOffice" jdbcType="BOOLEAN" javaType="java.lang.Boolean"/>
+        <result column="has_parking_space" property="hasParkingSpace" jdbcType="BOOLEAN" javaType="java.lang.Boolean"/>
+        <result column="single_park" property="singlePark" jdbcType="BOOLEAN" javaType="java.lang.Boolean"/>
+        <result column="open_space_acreage" property="openSpaceAcreage" jdbcType="NUMERIC" javaType="java.lang.Float"/>
+        <result column="location_advantage" property="locationAdvantage" jdbcType="VARCHAR"
+                javaType="java.lang.String"/>
+        <result column="fit_industry" property="fitIndustry" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="building_count" property="buildingCount" jdbcType="NUMERIC" javaType="java.lang.Integer"/>
+        <result column="lease_acreage_min" property="leaseAcreageMin" jdbcType="NUMERIC" javaType="java.lang.Float"/>
+        <result column="lease_acreage" property="leaseAcreage" jdbcType="NUMERIC" javaType="java.lang.Float"/>
+        <result column="price_min" property="priceMin" jdbcType="NUMERIC" javaType="java.lang.Float"/>
+        <result column="price_min_unit" property="priceMinUnit" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="floor_height_max" property="floorHeightMax" jdbcType="NUMERIC" javaType="java.lang.Float"/>
+        <result column="title" property="title" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="keywords" property="keywords" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="description" property="description" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="slogan" property="slogan" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="chief_slogan" property="chiefSlogan" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="park_images" property="parkImages" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="last_followup_time" property="lastFollowupTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        <result column="followup_count" property="followupCount" jdbcType="NUMERIC" javaType="java.lang.Integer"/>
+        <result column="id" property="id" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="owner_id" property="ownerId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="owner_name" property="ownerName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="owner_dept_id" property="ownerDeptId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="owner_dept_name" property="ownerDeptName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="create_id" property="createId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="create_name" property="createName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="create_dept_id" property="createDeptId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="create_dept_name" property="createDeptName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="last_update_id" property="lastUpdateId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="last_update_name" property="lastUpdateName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        <result column="is_deleted" property="isDeleted" jdbcType="BOOLEAN" javaType="java.lang.Boolean"/>
+        <result column="cpy_id" property="cpyId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+
+        <collection property="buildingList" columnPrefix="b_"
+                    resultMap="com.cii.bomse.house.industry.entity.BuildingIndustryEntity.BaseResultMap">
+        </collection>
+        <collection property="floorList" columnPrefix="f_"
+                    resultMap="com.cii.bomse.house.industry.entity.FloorIndustryEntity.BaseResultMap">
+        </collection>
+    </resultMap>
+
+    <!-- 通用脚本查询条件 -->
+    <sql id="selectSql">
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="keyword != null">
+                AND (
+                t.city_name like '%'||#{keyword}||'%'
+                or t.region_name like '%'||#{keyword}||'%'
+                or t.street_name like '%'||#{keyword}||'%'
+                or t.community_name like '%'||#{keyword}||'%'
+                or t.address like '%'||#{keyword}||'%'
+                or t.pk_name like '%'||#{keyword}||'%'
+                )
+            </if>
+            <choose>
+                <when test="communityId != null">
+                    AND t.community_id = #{communityId}
+                </when>
+                <when test="streetId != null">
+                    AND t.street_id = #{streetId}
+                </when>
+                <when test="regionId != null">
+                    AND t.region_id = #{regionId}
+                </when>
+                <when test="cityId != null">
+                    AND t.city_id = #{cityId}
+                </when>
+            </choose>
+            <choose>
+                <when test="communityIds != null">
+                    AND t.community_id in
+                    <foreach collection="communityIds" open="(" separator="," close=")" item="item">
+                        #{item}
+                    </foreach>
+                </when>
+                <when test="streetIds != null">
+                    AND t.street_id in
+                    <foreach collection="streetIds" open="(" separator="," close=")" item="item">
+                        #{item}
+                    </foreach>
+                </when>
+                <when test="regionIds != null">
+                    AND t.region_id in
+                    <foreach collection="regionIds" open="(" separator="," close=")" item="item">
+                        #{item}
+                    </foreach>
+                </when>
+                <when test="cityIds != null">
+                    AND t.city_id in
+                    <foreach collection="cityIds" open="(" separator="," close=")" item="item">
+                        #{item}
+                    </foreach>
+                </when>
+            </choose>
+
+            <if test="cityName != null">
+                AND t.city_name = #{cityName}
+            </if>
+            <if test="regionName != null">
+                AND t.region_name = #{regionName}
+            </if>
+            <if test="streetName != null">
+                AND t.street_name = #{streetName}
+            </if>
+            <if test="communityName != null">
+                AND t.community_name = #{communityName}
+            </if>
+            <if test="address != null">
+                AND t.address = #{address}
+            </if>
+            <if test="pkName != null">
+                AND t.pk_name = #{pkName}
+            </if>
+            <if test="longitudeStart != null">
+                AND t.longitude <![CDATA[ >= ]]> #{longitudeStart}
+            </if>
+            <if test="longitudeEnd != null">
+                AND t.longitude <![CDATA[ <= ]]> #{longitudeEnd}
+            </if>
+            <if test="latitudeStart != null">
+                AND t.latitude <![CDATA[ >= ]]> #{latitudeStart}
+            </if>
+            <if test="latitudeEnd != null">
+                AND t.latitude <![CDATA[ <= ]]> #{latitudeEnd}
+            </if>
+            <if test="certificateType != null">
+                AND t.certificate_type = #{certificateType}
+            </if>
+            <if test="landUseType != null">
+                AND t.land_use_type = #{landUseType}
+            </if>
+            <if test="voltageStart != null">
+                AND t.voltage <![CDATA[ >= ]]> #{voltageStart}
+            </if>
+            <if test="voltageEnd != null">
+                AND t.voltage <![CDATA[ <= ]]> #{voltageEnd}
+            </if>
+            <if test="hasTax != null">
+                AND t.has_tax = #{hasTax}
+            </if>
+            <if test="canRegistry != null">
+                AND t.can_registry = #{canRegistry}
+            </if>
+            <if test="hasMonitor != null">
+                AND t.has_monitor = #{hasMonitor}
+            </if>
+            <if test="hasGuard != null">
+                AND t.has_guard = #{hasGuard}
+            </if>
+            <if test="hasCanteen != null">
+                AND t.has_canteen = #{hasCanteen}
+            </if>
+            <if test="hasOffice != null">
+                AND t.has_office = #{hasOffice}
+            </if>
+            <if test="hasParkingSpace != null">
+                AND t.has_parking_space = #{hasParkingSpace}
+            </if>
+            <if test="singlePark != null">
+                AND t.single_park = #{singlePark}
+            </if>
+            <if test="openSpaceAcreageStart != null">
+                AND t.open_space_acreage <![CDATA[ >= ]]> #{openSpaceAcreageStart}
+            </if>
+            <if test="openSpaceAcreageEnd != null">
+                AND t.open_space_acreage <![CDATA[ <= ]]> #{openSpaceAcreageEnd}
+            </if>
+            <if test="locationAdvantage != null">
+                AND t.location_advantage = #{locationAdvantage}
+            </if>
+            <if test="fitIndustry != null">
+                AND t.fit_industry = #{fitIndustry}
+            </if>
+            <if test="buildingCountStart != null">
+                AND t.building_count <![CDATA[ >= ]]> #{buildingCountStart}
+            </if>
+            <if test="buildingCountEnd != null">
+                AND t.building_count <![CDATA[ <= ]]> #{buildingCountEnd}
+            </if>
+            <if test="leaseAcreageMinStart != null">
+                AND t.lease_acreage_min <![CDATA[ >= ]]> #{leaseAcreageMinStart}
+            </if>
+            <if test="leaseAcreageMinEnd != null">
+                AND t.lease_acreage_min <![CDATA[ <= ]]> #{leaseAcreageMinEnd}
+            </if>
+            <if test="leaseAcreageStart != null">
+                AND t.lease_acreage <![CDATA[ >= ]]> #{leaseAcreageStart}
+            </if>
+            <if test="leaseAcreageEnd != null">
+                AND t.lease_acreage <![CDATA[ <= ]]> #{leaseAcreageEnd}
+            </if>
+            <if test="priceMinStart != null">
+                AND t.price_min <![CDATA[ >= ]]> #{priceMinStart}
+            </if>
+            <if test="priceMinEnd != null">
+                AND t.price_min <![CDATA[ <= ]]> #{priceMinEnd}
+            </if>
+            <if test="priceMinUnit != null">
+                AND t.price_min_unit = #{priceMinUnit}
+            </if>
+            <if test="floorHeightMaxStart != null">
+                AND t.floor_height_max <![CDATA[ >= ]]> #{floorHeightMaxStart}
+            </if>
+            <if test="floorHeightMaxEnd != null">
+                AND t.floor_height_max <![CDATA[ <= ]]> #{floorHeightMaxEnd}
+            </if>
+            <if test="title != null">
+                AND t.title = #{title}
+            </if>
+            <if test="keywords != null">
+                AND t.keywords = #{keywords}
+            </if>
+            <if test="description != null">
+                AND t.description = #{description}
+            </if>
+            <if test="slogan != null">
+                AND t.slogan = #{slogan}
+            </if>
+            <if test="chiefSlogan != null">
+                AND t.chief_slogan = #{chiefSlogan}
+            </if>
+            <if test="parkImages != null">
+                AND t.park_images = #{parkImages}
+            </if>
+            <if test="lastFollowupTimeStart != null">
+                AND t.last_followup_time <![CDATA[ >= ]]> #{lastFollowupTimeStart}
+            </if>
+            <if test="lastFollowupTimeEnd != null">
+                AND t.last_followup_time <![CDATA[ <= ]]> #{lastFollowupTimeEnd}
+            </if>
+            <if test="followupCountStart != null">
+                AND t.followup_count <![CDATA[ >= ]]> #{followupCountStart}
+            </if>
+            <if test="followupCountEnd != null">
+                AND t.followup_count <![CDATA[ <= ]]> #{followupCountEnd}
+            </if>
+            <if test="id != null">
+                AND t.id = #{id}
+            </if>
+            <if test="remark != null">
+                AND t.remark = #{remark}
+            </if>
+            <if test="ownerId != null">
+                AND t.owner_id = #{ownerId}
+            </if>
+            <if test="ownerName != null">
+                AND t.owner_name = #{ownerName}
+            </if>
+            <if test="ownerDeptId != null">
+                AND t.owner_dept_id = #{ownerDeptId}
+            </if>
+            <if test="ownerDeptName != null">
+                AND t.owner_dept_name = #{ownerDeptName}
+            </if>
+            <if test="createId != null">
+                AND t.create_id = #{createId}
+            </if>
+            <if test="createName != null">
+                AND t.create_name = #{createName}
+            </if>
+            <if test="createDeptId != null">
+                AND t.create_dept_id = #{createDeptId}
+            </if>
+            <if test="createDeptName != null">
+                AND t.create_dept_name = #{createDeptName}
+            </if>
+            <if test="lastUpdateId != null">
+                AND t.last_update_id = #{lastUpdateId}
+            </if>
+            <if test="lastUpdateName != null">
+                AND t.last_update_name = #{lastUpdateName}
+            </if>
+            <if test="createTimeStart != null">
+                AND t.create_time <![CDATA[ >= ]]> #{createTimeStart}
+            </if>
+            <if test="createTimeEnd != null">
+                AND t.create_time <![CDATA[ <= ]]> #{createTimeEnd}
+            </if>
+            <if test="lastUpdateTimeStart != null">
+                AND t.last_update_time <![CDATA[ >= ]]> #{lastUpdateTimeStart}
+            </if>
+            <if test="lastUpdateTimeEnd != null">
+                AND t.last_update_time <![CDATA[ <= ]]> #{lastUpdateTimeEnd}
+            </if>
+            <if test="isDeleted != null">
+                AND t.is_deleted = #{isDeleted}
+            </if>
+            <if test="cpyId != null">
+                AND t.cpy_id = #{cpyId}
+            </if>
+        </trim>
+    </sql>
+
+    <!-- 查询唯一的信息 -->
+    <select id="selectUniqueByProp" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT t.* from t_boms_house_industry_park t
+        <include refid="selectSql"/>
+    </select>
+
+    <!--查询字段-->
+    <select id="selectUniqueByPropColumns" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT
+        <choose>
+            <when test="_columns != null">
+                <foreach collection="_columns" separator="," item="item">
+                    ${item}
+                </foreach>
+            </when>
+            <otherwise>
+                t.*
+            </otherwise>
+        </choose>
+        from t_boms_house_industry_park t
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="countByMap" parameterType="java.util.Map" resultType="int">
+        SELECT count(*) FROM t_boms_house_industry_park t
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息 -->
+    <select id="selectByMap" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT t.* from t_boms_house_industry_park t
+        <include refid="selectSql"/>
+        <if test="orderBy != null">
+            ORDER BY ${orderBy}
+        </if>
+        <if test="order != null">
+            ${order}
+        </if>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="selectByMapCount" parameterType="java.util.Map" resultType="int">
+        SELECT count(*) from t_boms_house_industry_park t
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息 -->
+    <select id="selectByMapSimple" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT
+        <choose>
+            <when test="_columns != null">
+                <foreach collection="_columns" separator="," item="item">
+                    ${item}
+                </foreach>
+            </when>
+            <otherwise>
+                t.*
+            </otherwise>
+        </choose>
+        from t_boms_house_industry_park t
+        <include refid="selectSql"/>
+        <if test="orderBy != null">
+            ORDER BY ${orderBy}
+        </if>
+        <if test="order != null">
+            ${order}
+        </if>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="selectByMapSimpleCount" parameterType="java.util.Map" resultType="int">
+        SELECT count(*) from t_boms_house_industry_park t
+        <include refid="selectSql"/>
+    </select>
+</mapper>

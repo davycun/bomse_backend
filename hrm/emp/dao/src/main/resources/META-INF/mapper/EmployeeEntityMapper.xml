@@ -1,0 +1,876 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cii.bomse.hrm.emp.entity.EmployeeEntity">
+
+    <resultMap id="BaseResultMap" type="com.cii.bomse.hrm.emp.entity.EmployeeEntity">
+        <result column="emp_name" property="empName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="emp_phone" property="empPhone" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="sex" property="sex" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="avatar" property="avatar" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="work_number" property="workNumber" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="email" property="email" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="post_id" property="postId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="id_card" property="idCard" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="id_card_image_front" property="idCardImageFront" jdbcType="VARCHAR"
+                javaType="java.lang.String"/>
+        <result column="id_card_image_back" property="idCardImageBack" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="enter_date" property="enterDate" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        <result column="has_quit" property="hasQuit" jdbcType="BOOLEAN" javaType="java.lang.Boolean"/>
+        <result column="education_type" property="educationType" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="education_images" property="educationImages" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="school" property="school" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="major" property="major" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="graduation_date" property="graduationDate" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        <result column="birthday" property="birthday" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        <result column="marry_type" property="marryType" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="link_man_one_name" property="linkManOneName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="link_man_one_phone" property="linkManOnePhone" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="link_man_one_relation" property="linkManOneRelation" jdbcType="VARCHAR"
+                javaType="java.lang.String"/>
+        <result column="link_man_two_name" property="linkManTwoName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="link_man_two_phone" property="linkManTwoPhone" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="link_man_two_relation" property="linkManTwoRelation" jdbcType="VARCHAR"
+                javaType="java.lang.String"/>
+        <result column="household_register_type" property="householdRegisterType" jdbcType="VARCHAR"
+                javaType="java.lang.String"/>
+        <result column="household_register_location" property="householdRegisterLocation" jdbcType="VARCHAR"
+                javaType="java.lang.String"/>
+        <result column="address" property="address" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="regular_date" property="regularDate" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        <result column="contract_start_date" property="contractStartDate" jdbcType="TIMESTAMP"
+                javaType="java.util.Date"/>
+        <result column="contract_end_date" property="contractEndDate" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        <result column="work_experience" property="workExperience" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="bank_card_number" property="bankCardNumber" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="bank_name" property="bankName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="bank_card_image" property="bankCardImage" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="can_login" property="canLogin" jdbcType="BOOLEAN" javaType="java.lang.Boolean"/>
+        <result column="id" property="id" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="owner_id" property="ownerId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="owner_name" property="ownerName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="owner_dept_id" property="ownerDeptId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="owner_dept_name" property="ownerDeptName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="create_id" property="createId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="create_name" property="createName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="create_dept_id" property="createDeptId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="create_dept_name" property="createDeptName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="last_update_id" property="lastUpdateId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="last_update_name" property="lastUpdateName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        <result column="last_update_time" property="lastUpdateTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        <result column="is_deleted" property="isDeleted" jdbcType="BOOLEAN" javaType="java.lang.Boolean"/>
+        <result column="cpy_id" property="cpyId" jdbcType="NUMERIC" javaType="java.lang.Long"/>
+        <result column="cpy_name" property="cpyName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+    </resultMap>
+
+    <!-- 批量新增信息到数据库中 -->
+    <insert id="batchInsert" parameterType="java.util.List">
+        <foreach collection="list" item="i" separator=";">
+            INSERT INTO t_boms_hrm_emp_employee
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="i.empName != null and i.empName != ''">
+                    emp_name,
+                </if>
+                <if test="i.empPhone != null and i.empPhone != ''">
+                    emp_phone,
+                </if>
+                <if test="i.sex != null and i.sex != ''">
+                    sex,
+                </if>
+                <if test="i.avatar != null and i.avatar != ''">
+                    avatar,
+                </if>
+                <if test="i.workNumber != null and i.workNumber != ''">
+                    work_number,
+                </if>
+                <if test="i.email != null and i.email != ''">
+                    email,
+                </if>
+                <if test="i.postId != null">
+                    post_id,
+                </if>
+                <if test="i.idCard != null and i.idCard != ''">
+                    id_card,
+                </if>
+                <if test="i.idCardImageFront != null and i.idCardImageFront != ''">
+                    id_card_image_front,
+                </if>
+                <if test="i.idCardImageBack != null and i.idCardImageBack != ''">
+                    id_card_image_back,
+                </if>
+                <if test="i.enterDate != null">
+                    enter_date,
+                </if>
+                <if test="i.hasQuit != null">
+                    has_quit,
+                </if>
+                <if test="i.educationType != null and i.educationType != ''">
+                    education_type,
+                </if>
+                <if test="i.educationImages != null and i.educationImages != ''">
+                    education_images,
+                </if>
+                <if test="i.school != null and i.school != ''">
+                    school,
+                </if>
+                <if test="i.major != null and i.major != ''">
+                    major,
+                </if>
+                <if test="i.graduationDate != null">
+                    graduation_date,
+                </if>
+                <if test="i.birthday != null">
+                    birthday,
+                </if>
+                <if test="i.marryType != null and i.marryType != ''">
+                    marry_type,
+                </if>
+                <if test="i.linkManOneName != null and i.linkManOneName != ''">
+                    link_man_one_name,
+                </if>
+                <if test="i.linkManOnePhone != null and i.linkManOnePhone != ''">
+                    link_man_one_phone,
+                </if>
+                <if test="i.linkManOneRelation != null and i.linkManOneRelation != ''">
+                    link_man_one_relation,
+                </if>
+                <if test="i.linkManTwoName != null and i.linkManTwoName != ''">
+                    link_man_two_name,
+                </if>
+                <if test="i.linkManTwoPhone != null and i.linkManTwoPhone != ''">
+                    link_man_two_phone,
+                </if>
+                <if test="i.linkManTwoRelation != null and i.linkManTwoRelation != ''">
+                    link_man_two_relation,
+                </if>
+                <if test="i.householdRegisterType != null and i.householdRegisterType != ''">
+                    household_register_type,
+                </if>
+                <if test="i.householdRegisterLocation != null and i.householdRegisterLocation != ''">
+                    household_register_location,
+                </if>
+                <if test="i.address != null and i.address != ''">
+                    address,
+                </if>
+                <if test="i.regularDate != null">
+                    regular_date,
+                </if>
+                <if test="i.contractStartDate != null">
+                    contract_start_date,
+                </if>
+                <if test="i.contractEndDate != null">
+                    contract_end_date,
+                </if>
+                <if test="i.workExperience != null and i.workExperience != ''">
+                    work_experience,
+                </if>
+                <if test="i.bankCardNumber != null and i.bankCardNumber != ''">
+                    bank_card_number,
+                </if>
+                <if test="i.bankName != null and i.bankName != ''">
+                    bank_name,
+                </if>
+                <if test="i.bankCardImage != null and i.bankCardImage != ''">
+                    bank_card_image,
+                </if>
+                <if test="i.canLogin != null">
+                    can_login,
+                </if>
+                <if test="i.id != null">
+                    id,
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    remark,
+                </if>
+                <if test="i.ownerId != null">
+                    owner_id,
+                </if>
+                <if test="i.ownerName != null and i.ownerName != ''">
+                    owner_name,
+                </if>
+                <if test="i.ownerDeptId != null">
+                    owner_dept_id,
+                </if>
+                <if test="i.ownerDeptName != null and i.ownerDeptName != ''">
+                    owner_dept_name,
+                </if>
+                <if test="i.createId != null">
+                    create_id,
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name,
+                </if>
+                <if test="i.createDeptId != null">
+                    create_dept_id,
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    create_dept_name,
+                </if>
+                <if test="i.lastUpdateId != null">
+                    last_update_id,
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name,
+                </if>
+                <if test="i.createTime != null">
+                    create_time,
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time,
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted,
+                </if>
+                <if test="i.cpyId != null">
+                    cpy_id,
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    cpy_name,
+                </if>
+
+            </trim>
+            <trim prefix="values (" suffix=")" suffixOverrides=",">
+
+                <if test="i.empName != null and i.empName != ''">
+                    #{i.empName},
+                </if>
+                <if test="i.empPhone != null and i.empPhone != ''">
+                    #{i.empPhone},
+                </if>
+                <if test="i.sex != null and i.sex != ''">
+                    #{i.sex},
+                </if>
+                <if test="i.avatar != null and i.avatar != ''">
+                    #{i.avatar},
+                </if>
+                <if test="i.workNumber != null and i.workNumber != ''">
+                    #{i.workNumber},
+                </if>
+                <if test="i.email != null and i.email != ''">
+                    #{i.email},
+                </if>
+                <if test="i.postId != null">
+                    #{i.postId},
+                </if>
+                <if test="i.idCard != null and i.idCard != ''">
+                    #{i.idCard},
+                </if>
+                <if test="i.idCardImageFront != null and i.idCardImageFront != ''">
+                    #{i.idCardImageFront},
+                </if>
+                <if test="i.idCardImageBack != null and i.idCardImageBack != ''">
+                    #{i.idCardImageBack},
+                </if>
+                <if test="i.enterDate != null">
+                    #{i.enterDate},
+                </if>
+                <if test="i.hasQuit != null">
+                    #{i.hasQuit},
+                </if>
+                <if test="i.educationType != null and i.educationType != ''">
+                    #{i.educationType},
+                </if>
+                <if test="i.educationImages != null and i.educationImages != ''">
+                    #{i.educationImages},
+                </if>
+                <if test="i.school != null and i.school != ''">
+                    #{i.school},
+                </if>
+                <if test="i.major != null and i.major != ''">
+                    #{i.major},
+                </if>
+                <if test="i.graduationDate != null">
+                    #{i.graduationDate},
+                </if>
+                <if test="i.birthday != null">
+                    #{i.birthday},
+                </if>
+                <if test="i.marryType != null and i.marryType != ''">
+                    #{i.marryType},
+                </if>
+                <if test="i.linkManOneName != null and i.linkManOneName != ''">
+                    #{i.linkManOneName},
+                </if>
+                <if test="i.linkManOnePhone != null and i.linkManOnePhone != ''">
+                    #{i.linkManOnePhone},
+                </if>
+                <if test="i.linkManOneRelation != null and i.linkManOneRelation != ''">
+                    #{i.linkManOneRelation},
+                </if>
+                <if test="i.linkManTwoName != null and i.linkManTwoName != ''">
+                    #{i.linkManTwoName},
+                </if>
+                <if test="i.linkManTwoPhone != null and i.linkManTwoPhone != ''">
+                    #{i.linkManTwoPhone},
+                </if>
+                <if test="i.linkManTwoRelation != null and i.linkManTwoRelation != ''">
+                    #{i.linkManTwoRelation},
+                </if>
+                <if test="i.householdRegisterType != null and i.householdRegisterType != ''">
+                    #{i.householdRegisterType},
+                </if>
+                <if test="i.householdRegisterLocation != null and i.householdRegisterLocation != ''">
+                    #{i.householdRegisterLocation},
+                </if>
+                <if test="i.address != null and i.address != ''">
+                    #{i.address},
+                </if>
+                <if test="i.regularDate != null">
+                    #{i.regularDate},
+                </if>
+                <if test="i.contractStartDate != null">
+                    #{i.contractStartDate},
+                </if>
+                <if test="i.contractEndDate != null">
+                    #{i.contractEndDate},
+                </if>
+                <if test="i.workExperience != null and i.workExperience != ''">
+                    #{i.workExperience},
+                </if>
+                <if test="i.bankCardNumber != null and i.bankCardNumber != ''">
+                    #{i.bankCardNumber},
+                </if>
+                <if test="i.bankName != null and i.bankName != ''">
+                    #{i.bankName},
+                </if>
+                <if test="i.bankCardImage != null and i.bankCardImage != ''">
+                    #{i.bankCardImage},
+                </if>
+                <if test="i.canLogin != null">
+                    #{i.canLogin},
+                </if>
+                <if test="i.id != null">
+                    #{i.id},
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    #{i.remark},
+                </if>
+                <if test="i.ownerId != null">
+                    #{i.ownerId},
+                </if>
+                <if test="i.ownerName != null and i.ownerName != ''">
+                    #{i.ownerName},
+                </if>
+                <if test="i.ownerDeptId != null">
+                    #{i.ownerDeptId},
+                </if>
+                <if test="i.ownerDeptName != null and i.ownerDeptName != ''">
+                    #{i.ownerDeptName},
+                </if>
+                <if test="i.createId != null">
+                    #{i.createId},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    #{i.createName},
+                </if>
+                <if test="i.createDeptId != null">
+                    #{i.createDeptId},
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    #{i.createDeptName},
+                </if>
+                <if test="i.lastUpdateId != null">
+                    #{i.lastUpdateId},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    #{i.isDeleted},
+                </if>
+                <if test="i.cpyId != null">
+                    #{i.cpyId},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    #{i.cpyName},
+                </if>
+            </trim>
+        </foreach>
+    </insert>
+
+    <!-- 批量更新数据信息 -->
+    <update id="batchUpdate" parameterType="java.util.List">
+        <foreach collection="list" item="i" index="index" separator=";">
+            UPDATE t_boms_hrm_emp_employee
+            <trim prefix="set" suffixOverrides=",">
+                <if test="i.empName != null and i.empName != ''">
+                    emp_name = #{i.empName},
+                </if>
+                <if test="i.empPhone != null and i.empPhone != ''">
+                    emp_phone = #{i.empPhone},
+                </if>
+                <if test="i.sex != null and i.sex != ''">
+                    sex = #{i.sex},
+                </if>
+                <if test="i.avatar != null and i.avatar != ''">
+                    avatar = #{i.avatar},
+                </if>
+                <if test="i.workNumber != null and i.workNumber != ''">
+                    work_number = #{i.workNumber},
+                </if>
+                <if test="i.email != null and i.email != ''">
+                    email = #{i.email},
+                </if>
+                <if test="i.postId != null">
+                    post_id = #{i.postId},
+                </if>
+                <if test="i.idCard != null and i.idCard != ''">
+                    id_card = #{i.idCard},
+                </if>
+                <if test="i.idCardImageFront != null and i.idCardImageFront != ''">
+                    id_card_image_front = #{i.idCardImageFront},
+                </if>
+                <if test="i.idCardImageBack != null and i.idCardImageBack != ''">
+                    id_card_image_back = #{i.idCardImageBack},
+                </if>
+                <if test="i.enterDate != null">
+                    enter_date = #{i.enterDate},
+                </if>
+                <if test="i.hasQuit != null">
+                    has_quit = #{i.hasQuit},
+                </if>
+                <if test="i.educationType != null and i.educationType != ''">
+                    education_type = #{i.educationType},
+                </if>
+                <if test="i.educationImages != null and i.educationImages != ''">
+                    education_images = #{i.educationImages},
+                </if>
+                <if test="i.school != null and i.school != ''">
+                    school = #{i.school},
+                </if>
+                <if test="i.major != null and i.major != ''">
+                    major = #{i.major},
+                </if>
+                <if test="i.graduationDate != null">
+                    graduation_date = #{i.graduationDate},
+                </if>
+                <if test="i.birthday != null">
+                    birthday = #{i.birthday},
+                </if>
+                <if test="i.marryType != null and i.marryType != ''">
+                    marry_type = #{i.marryType},
+                </if>
+                <if test="i.linkManOneName != null and i.linkManOneName != ''">
+                    link_man_one_name = #{i.linkManOneName},
+                </if>
+                <if test="i.linkManOnePhone != null and i.linkManOnePhone != ''">
+                    link_man_one_phone = #{i.linkManOnePhone},
+                </if>
+                <if test="i.linkManOneRelation != null and i.linkManOneRelation != ''">
+                    link_man_one_relation = #{i.linkManOneRelation},
+                </if>
+                <if test="i.linkManTwoName != null and i.linkManTwoName != ''">
+                    link_man_two_name = #{i.linkManTwoName},
+                </if>
+                <if test="i.linkManTwoPhone != null and i.linkManTwoPhone != ''">
+                    link_man_two_phone = #{i.linkManTwoPhone},
+                </if>
+                <if test="i.linkManTwoRelation != null and i.linkManTwoRelation != ''">
+                    link_man_two_relation = #{i.linkManTwoRelation},
+                </if>
+                <if test="i.householdRegisterType != null and i.householdRegisterType != ''">
+                    household_register_type = #{i.householdRegisterType},
+                </if>
+                <if test="i.householdRegisterLocation != null and i.householdRegisterLocation != ''">
+                    household_register_location = #{i.householdRegisterLocation},
+                </if>
+                <if test="i.address != null and i.address != ''">
+                    address = #{i.address},
+                </if>
+                <if test="i.regularDate != null">
+                    regular_date = #{i.regularDate},
+                </if>
+                <if test="i.contractStartDate != null">
+                    contract_start_date = #{i.contractStartDate},
+                </if>
+                <if test="i.contractEndDate != null">
+                    contract_end_date = #{i.contractEndDate},
+                </if>
+                <if test="i.workExperience != null and i.workExperience != ''">
+                    work_experience = #{i.workExperience},
+                </if>
+                <if test="i.bankCardNumber != null and i.bankCardNumber != ''">
+                    bank_card_number = #{i.bankCardNumber},
+                </if>
+                <if test="i.bankName != null and i.bankName != ''">
+                    bank_name = #{i.bankName},
+                </if>
+                <if test="i.bankCardImage != null and i.bankCardImage != ''">
+                    bank_card_image = #{i.bankCardImage},
+                </if>
+                <if test="i.canLogin != null">
+                    can_login = #{i.canLogin},
+                </if>
+                <if test="i.id != null">
+                    id = #{i.id},
+                </if>
+                <if test="i.remark != null and i.remark != ''">
+                    remark = #{i.remark},
+                </if>
+                <if test="i.ownerId != null">
+                    owner_id = #{i.ownerId},
+                </if>
+                <if test="i.ownerName != null and i.ownerName != ''">
+                    owner_name = #{i.ownerName},
+                </if>
+                <if test="i.ownerDeptId != null">
+                    owner_dept_id = #{i.ownerDeptId},
+                </if>
+                <if test="i.ownerDeptName != null and i.ownerDeptName != ''">
+                    owner_dept_name = #{i.ownerDeptName},
+                </if>
+                <if test="i.createId != null">
+                    create_id = #{i.createId},
+                </if>
+                <if test="i.createName != null and i.createName != ''">
+                    create_name = #{i.createName},
+                </if>
+                <if test="i.createDeptId != null">
+                    create_dept_id = #{i.createDeptId},
+                </if>
+                <if test="i.createDeptName != null and i.createDeptName != ''">
+                    create_dept_name = #{i.createDeptName},
+                </if>
+                <if test="i.lastUpdateId != null">
+                    last_update_id = #{i.lastUpdateId},
+                </if>
+                <if test="i.lastUpdateName != null and i.lastUpdateName != ''">
+                    last_update_name = #{i.lastUpdateName},
+                </if>
+                <if test="i.createTime != null">
+                    create_time = #{i.createTime},
+                </if>
+                <if test="i.lastUpdateTime != null">
+                    last_update_time = #{i.lastUpdateTime},
+                </if>
+                <if test="i.isDeleted != null">
+                    is_deleted = #{i.isDeleted},
+                </if>
+                <if test="i.cpyId != null">
+                    cpy_id = #{i.cpyId},
+                </if>
+                <if test="i.cpyName != null and i.cpyName != ''">
+                    cpy_name = #{i.cpyName},
+                </if>
+            </trim>
+            <trim prefix="where" prefixOverrides="AND|OR">
+                id = #{i.id}
+                <if test="i.cpyId != null">
+                    AND cpy_id = #{i.cpyId}
+                </if>
+            </trim>
+        </foreach>
+    </update>
+
+    <!-- 通过主键批量物理删除数据 -->
+    <delete id="batchDeleteByIds" parameterType="java.util.List">
+        DELETE FROM t_boms_hrm_emp_employee WHERE ID IN
+        <foreach collection="list" item="i" open="(" separator="," close=")">
+            #{i}
+        </foreach>
+    </delete>
+
+    <!-- 通过条件删除指定数据-->
+    <delete id="deleteByMap" parameterType="map">
+        delete from t_boms_hrm_emp_employee t
+        <include refid="selectSql"></include>
+    </delete>
+    <!--执行本地更新 -->
+    <update id="updateByNativeSql" parameterType="string">
+        ${value}
+    </update>
+
+    <!-- 根据原生Sql查询记录 -->
+    <select id="selectByNativeSql" parameterType="string" resultMap="BaseResultMap">
+        ${value}
+    </select>
+
+    <!-- 根据原生SQL查询单条记录-->
+    <select id="selectOneByNativeSql" parameterType="string" resultMap="BaseResultMap">
+        ${value}
+    </select>
+
+    <!-- 根据原生Sql统计数量 -->
+    <select id="countByNativeSql" parameterType="string" resultType="int">
+        ${value}
+    </select>
+
+    <!-- 通用脚本查询条件 -->
+    <sql id="selectSql">
+        <trim prefix="where" prefixOverrides="AND|OR">
+            <if test="keyword !=null and keyword !=''">
+                AND (
+                t.emp_name LIKE '%' || #{keyword} ||'%' or
+                t.emp_phone LIKE '%' || #{keyword} ||'%'  or
+                t.owner_dept_name LIKE '%' || #{keyword} ||'%'
+                )
+            </if>
+            <if test="empName != null">
+                AND t.emp_name = #{empName}
+            </if>
+            <if test="empPhone != null">
+                AND t.emp_phone = #{empPhone}
+            </if>
+            <if test="sex != null">
+                AND t.sex = #{sex}
+            </if>
+            <if test="avatar != null">
+                AND t.avatar = #{avatar}
+            </if>
+            <if test="workNumber != null">
+                AND t.work_number = #{workNumber}
+            </if>
+            <if test="email != null">
+                AND t.email = #{email}
+            </if>
+            <if test="postId != null">
+                AND t.post_id = #{postId}
+            </if>
+            <if test="idCard != null">
+                AND t.id_card = #{idCard}
+            </if>
+            <if test="idCardImageFront != null">
+                AND t.id_card_image_front = #{idCardImageFront}
+            </if>
+            <if test="idCardImageBack != null">
+                AND t.id_card_image_back = #{idCardImageBack}
+            </if>
+            <if test="enterDateStart != null">
+                AND t.enter_date <![CDATA[ >= ]]> #{enterDateStart}
+            </if>
+            <if test="enterDateEnd != null">
+                AND t.enter_date <![CDATA[ <= ]]> #{enterDateEnd}
+            </if>
+            <if test="hasQuit != null">
+                AND t.has_quit = #{hasQuit}
+            </if>
+            <if test="educationType != null">
+                AND t.education_type = #{educationType}
+            </if>
+            <if test="educationImages != null">
+                AND t.education_images = #{educationImages}
+            </if>
+            <if test="school != null">
+                AND t.school = #{school}
+            </if>
+            <if test="major != null">
+                AND t.major = #{major}
+            </if>
+            <if test="graduationDateStart != null">
+                AND t.graduation_date <![CDATA[ >= ]]> #{graduationDateStart}
+            </if>
+            <if test="graduationDateEnd != null">
+                AND t.graduation_date <![CDATA[ <= ]]> #{graduationDateEnd}
+            </if>
+            <if test="birthdayStart != null">
+                AND t.birthday <![CDATA[ >= ]]> #{birthdayStart}
+            </if>
+            <if test="birthdayEnd != null">
+                AND t.birthday <![CDATA[ <= ]]> #{birthdayEnd}
+            </if>
+            <if test="marryType != null">
+                AND t.marry_type = #{marryType}
+            </if>
+            <if test="linkManOneName != null">
+                AND t.link_man_one_name = #{linkManOneName}
+            </if>
+            <if test="linkManOnePhone != null">
+                AND t.link_man_one_phone = #{linkManOnePhone}
+            </if>
+            <if test="linkManOneRelation != null">
+                AND t.link_man_one_relation = #{linkManOneRelation}
+            </if>
+            <if test="linkManTwoName != null">
+                AND t.link_man_two_name = #{linkManTwoName}
+            </if>
+            <if test="linkManTwoPhone != null">
+                AND t.link_man_two_phone = #{linkManTwoPhone}
+            </if>
+            <if test="linkManTwoRelation != null">
+                AND t.link_man_two_relation = #{linkManTwoRelation}
+            </if>
+            <if test="householdRegisterType != null">
+                AND t.household_register_type = #{householdRegisterType}
+            </if>
+            <if test="householdRegisterLocation != null">
+                AND t.household_register_location = #{householdRegisterLocation}
+            </if>
+            <if test="address != null">
+                AND t.address = #{address}
+            </if>
+            <if test="regularDateStart != null">
+                AND t.regular_date <![CDATA[ >= ]]> #{regularDateStart}
+            </if>
+            <if test="regularDateEnd != null">
+                AND t.regular_date <![CDATA[ <= ]]> #{regularDateEnd}
+            </if>
+            <if test="contractStartDateStart != null">
+                AND t.contract_start_date <![CDATA[ >= ]]> #{contractStartDateStart}
+            </if>
+            <if test="contractStartDateEnd != null">
+                AND t.contract_start_date <![CDATA[ <= ]]> #{contractStartDateEnd}
+            </if>
+            <if test="contractEndDateStart != null">
+                AND t.contract_end_date <![CDATA[ >= ]]> #{contractEndDateStart}
+            </if>
+            <if test="contractEndDateEnd != null">
+                AND t.contract_end_date <![CDATA[ <= ]]> #{contractEndDateEnd}
+            </if>
+            <if test="workExperience != null">
+                AND t.work_experience = #{workExperience}
+            </if>
+            <if test="bankCardNumber != null">
+                AND t.bank_card_number = #{bankCardNumber}
+            </if>
+            <if test="bankName != null">
+                AND t.bank_name = #{bankName}
+            </if>
+            <if test="bankCardImage != null">
+                AND t.bank_card_image = #{bankCardImage}
+            </if>
+            <if test="canLogin != null">
+                AND t.can_login = #{canLogin}
+            </if>
+            <if test="id != null">
+                AND t.id = #{id}
+            </if>
+            <if test="remark != null">
+                AND t.remark = #{remark}
+            </if>
+            <if test="ownerId != null">
+                AND t.owner_id = #{ownerId}
+            </if>
+            <if test="ownerName != null">
+                AND t.owner_name = #{ownerName}
+            </if>
+            <if test="ownerDeptId != null">
+                AND t.owner_dept_id = #{ownerDeptId}
+            </if>
+            <if test="ownerDeptName != null">
+                AND t.owner_dept_name = #{ownerDeptName}
+            </if>
+            <if test="createId != null">
+                AND t.create_id = #{createId}
+            </if>
+            <if test="createName != null">
+                AND t.create_name = #{createName}
+            </if>
+            <if test="createDeptId != null">
+                AND t.create_dept_id = #{createDeptId}
+            </if>
+            <if test="createDeptName != null">
+                AND t.create_dept_name = #{createDeptName}
+            </if>
+            <if test="lastUpdateId != null">
+                AND t.last_update_id = #{lastUpdateId}
+            </if>
+            <if test="lastUpdateName != null">
+                AND t.last_update_name = #{lastUpdateName}
+            </if>
+            <if test="createTimeStart != null">
+                AND t.create_time <![CDATA[ >= ]]> #{createTimeStart}
+            </if>
+            <if test="createTimeEnd != null">
+                AND t.create_time <![CDATA[ <= ]]> #{createTimeEnd}
+            </if>
+            <if test="lastUpdateTimeStart != null">
+                AND t.last_update_time <![CDATA[ >= ]]> #{lastUpdateTimeStart}
+            </if>
+            <if test="lastUpdateTimeEnd != null">
+                AND t.last_update_time <![CDATA[ <= ]]> #{lastUpdateTimeEnd}
+            </if>
+            <if test="isDeleted != null">
+                AND t.is_deleted = #{isDeleted}
+            </if>
+            <if test="cpyId != null">
+                AND t.cpy_id = #{cpyId}
+            </if>
+            <if test="cpyName != null">
+                AND t.cpy_name = #{cpyName}
+            </if>
+        </trim>
+    </sql>
+
+    <!-- 查询唯一的信息 -->
+    <select id="selectUniqueByProp" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT * from t_boms_hrm_emp_employee t
+        <include refid="selectSql"/>
+    </select>
+
+    <select id="selectUniqueByPropColumns" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT
+        <choose>
+            <when test="_columns != null">
+                <foreach collection="_columns" separator="," item="item">
+                    ${item}
+                </foreach>
+            </when>
+            <otherwise>
+                t.*
+            </otherwise>
+        </choose>
+        from t_boms_hrm_emp_employee t
+        <include refid="selectSql"/>
+    </select>
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="countByMap" parameterType="java.util.Map" resultType="int">
+        SELECT count(t.id) FROM t_boms_hrm_emp_employee t
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息 -->
+    <select id="selectByMap" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT * from t_boms_hrm_emp_employee t
+        <include refid="selectSql"/>
+        <if test="orderBy != null">
+            ORDER BY ${orderBy}
+        </if>
+        <if test="order != null">
+            ${order}
+        </if>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="selectByMapCount" parameterType="java.util.Map" resultType="int">
+        SELECT count(*) from t_boms_hrm_emp_employee t
+        <include refid="selectSql"/>
+    </select>
+
+    <!-- 通过指定条件查询信息 -->
+    <select id="selectByMapSimple" parameterType="java.util.Map" resultMap="BaseResultMap">
+        SELECT
+        <choose>
+            <when test="_columns != null">
+                <foreach collection="_columns" separator="," item="item">
+                    ${item}
+                </foreach>
+            </when>
+            <otherwise>
+                t.*
+            </otherwise>
+        </choose>
+        from t_boms_hrm_emp_employee t
+        <include refid="selectSql"/>
+        <if test="orderBy != null">
+            ORDER BY ${orderBy}
+        </if>
+        <if test="order != null">
+            ${order}
+        </if>
+    </select>
+
+    <!-- 通过指定条件查询信息总数，用于分页展示 -->
+    <select id="selectByMapSimpleCount" parameterType="java.util.Map" resultType="int">
+        SELECT count(*) from t_boms_hrm_emp_employee t
+        <include refid="selectSql"/>
+    </select>
+</mapper>

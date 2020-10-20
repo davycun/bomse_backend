@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cii.bomse.bi.entity.CustomerChannelReportEntity">
+
+    <resultMap id="BaseResultMap" type="com.cii.bomse.bi.entity.CustomerChannelReportEntity">
+        <result column="cus_source" property="cusSource" jdbcType="VARCHAR" javaType="java.lang.String" />
+        <result column="customer_personal_count" property="customerPersonalCount" jdbcType="NUMERIC" javaType="java.lang.Float" />
+        <result column="customer_company_count" property="customerCompanyCount" jdbcType="NUMERIC" javaType="java.lang.Float" />
+        <result column="customer_has_rent_count" property="customerHasRentCount" jdbcType="NUMERIC" javaType="java.lang.Float" />
+        <result column="customer_accept_count" property="customerAcceptCount" jdbcType="NUMERIC" javaType="java.lang.Float" />
+        <result column="customer_survey_count" property="customerSurveyCount" jdbcType="NUMERIC" javaType="java.lang.Float" />
+        <result column="new_customer_survey_count" property="newCustomerSurveyCount" jdbcType="NUMERIC" javaType="java.lang.Float" />
+        <result column="order_count" property="orderCount" jdbcType="NUMERIC" javaType="java.lang.Float" />
+        <result column="new_customer_order_count" property="newCustomerOrderCount" jdbcType="NUMERIC" javaType="java.lang.Float" />
+        <result column="name" property="name" jdbcType="VARCHAR" javaType="java.lang.String" />
+        <result column="id" property="id" jdbcType="NUMERIC" javaType="java.lang.Long" />
+
+        <result column="count" property="count" jdbcType="NUMERIC" javaType="java.lang.Float"/>
+    </resultMap>
+
+    <!-- 根据原生Sql查询记录 -->
+    <select id="selectByNativeSql" parameterType="string" resultMap="BaseResultMap">
+        ${value}
+    </select>
+
+    <!-- 根据原生SQL查询单条记录-->
+    <select id="selectOneByNativeSql" parameterType="string" resultMap="BaseResultMap">
+        ${value}
+    </select>
+
+    <!-- 根据原生Sql统计数量 -->
+    <select id="countByNativeSql" parameterType="string" resultType="int">
+        ${value}
+    </select>
+
+    <!-- 通用脚本查询条件 -->
+    <sql id="selectSql">
+        <trim prefix="where" prefixOverrides="AND|OR">
+
+            <if test="createTimeStart != null">
+                AND t.create_time <![CDATA[ >= ]]> #{createTimeStart}
+            </if>
+            <if test="createTimeEnd != null">
+                AND t.create_time <![CDATA[ <= ]]> #{createTimeEnd}
+            </if>
+            <if test="surveyTimeStart != null">
+                AND t.survey_time <![CDATA[ >= ]]> #{surveyTimeStart}
+            </if>
+            <if test="surveyTimeEnd != null">
+                AND t.survey_time <![CDATA[ <= ]]> #{surveyTimeEnd}
+            </if>
+            <if test="cusStatus != null">
+                AND t.cus_status = #{cusStatus}
+            </if>
+            <if test="cusType != null">
+                AND t.cus_type = #{cusType}
+            </if>
+            <if test="acceptStatus != null">
+                AND t.accept_status = #{acceptStatus}
+            </if>
+            <if test="rentStatus != null">
+                AND t.rent_status = #{rentStatus}
+            </if>
+
+            <if test="createId != null">
+                AND t.create_id = #{createId}
+            </if>
+            <if test="createDeptId != null">
+                AND t.create_dept_id = #{createDeptId}
+            </if>
+            <if test="ownerId != null">
+                AND t.owner_id = #{ownerId}
+            </if>
+            <if test="ownerDeptId != null">
+                AND t.owner_dept_id = #{ownerDeptId}
+            </if>
+            <if test="surveyUserId != null">
+                AND t.survey_user_id = #{surveyUserId}
+            </if>
+            <if test="ownerDeptIds != null">
+                AND t.owner_dept_id in
+                <foreach collection="ownerDeptIds" open="(" separator="," close=")" item="item">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="createDeptIds != null">
+                AND t.create_dept_id in
+                <foreach collection="createDeptIds" open="(" separator="," close=")" item="item">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="surveyDeptIds != null">
+                AND t.survey_dept_id in
+                <foreach collection="surveyDeptIds" open="(" separator="," close=")" item="item">
+                    #{item}
+                </foreach>
+            </if>
+
+
+            <if test="orderTimeStart != null">
+                AND o.order_time <![CDATA[ >= ]]> #{orderTimeStart}
+            </if>
+            <if test="orderTimeEnd != null">
+                AND o.order_time <![CDATA[ <= ]]> #{orderTimeEnd}
+            </if>
+            <if test="orderOwnerId != null">
+                AND o.owner_id = #{orderOwnerId}
+            </if>
+
+            <if test="orderOwnerDeptId != null">
+                AND o.owner_dept_id = #{orderOwnerDeptId}
+            </if>
+
+            <if test="orderOwnerDeptIds != null">
+                AND o.owner_dept_id in
+                <foreach collection="orderOwnerDeptIds" open="(" separator="," close=")" item="item">
+                    #{item}
+                </foreach>
+            </if>
+        </trim>
+    </sql>
+
+    <!-- 通过指定条件查询信息 -->
+    <select id="selectCustomerCount" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select t.cus_source, count(*) as count
+        from t_boms_crm_industry_customer t
+        <include refid="selectSql"/>
+        group by t.cus_source
+    </select>
+    <select id="selectOrderCount" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select o.cus_source, count(*) as count
+        from t_eia_trade_order o left join t_boms_crm_industry_customer t on t.id=o.cus_id
+        <include refid="selectSql"/>
+        group by o.cus_source
+    </select>
+
+</mapper>
