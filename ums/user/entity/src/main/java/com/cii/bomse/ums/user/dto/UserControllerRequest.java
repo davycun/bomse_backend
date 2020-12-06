@@ -12,4 +12,13 @@ import javax.validation.constraints.NotNull;
  */
 public class UserControllerRequest extends AbstractRestControllerRequest<UserDto> {
 
+    private String tokenType;
+
+    public String getTokenType() {
+        return tokenType;
+    }
+
+    public void setTokenType(String tokenType) {
+        this.tokenType = tokenType;
+    }
 }

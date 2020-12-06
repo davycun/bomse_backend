@@ -74,7 +74,13 @@ public class UserController extends AbstractRestController {
         now = DateUtils.addDays(now,1);
         now = DateUtils.setHours(now,1);
 
-        Token token = new Token(user.getId(), auth,ciiProperty.getUserTokenType(), now);
+        String tokenType = request.getTokenType();
+
+        if (ObjectUtils.isEmpty(tokenType)){
+            tokenType = ciiProperty.getUserTokenType();
+        }
+
+        Token token = new Token(user.getId(), auth,tokenType, now);
 
         userManager.saveUserToken(token);
         UserTokenUtils.addTokenToCookie(req, resp, token, ciiProperty.getUserTokenName());

@@ -2,12 +2,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-    <parent>
-        <groupId>com.ciiframework</groupId>
-        <artifactId>parent</artifactId>
-        <version>1.0-SNAPSHOT</version>
-    </parent>
-
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.cii.bomse</groupId>
@@ -28,33 +22,78 @@
         <module>house</module>
     </modules>
     <properties>
-        <cii_version>1.0-SNAPSHOT</cii_version>
-        <!--<nexus_content_public_url>http://www.wzitech.com/nexus/content/groups/public/</nexus_content_public_url>-->
-        <nexus_kupat_public_url>http://nexus.gniuu.com/nexus/content/groups/gniuu-nexus/</nexus_kupat_public_url>
+        <!--base properties -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build.jdk.version>1.8</project.build.jdk.version>
 
-        <!--<nexus.content.public.url>http://nexus.kupat.cn/nexus/content/groups/public/</nexus.content.public.url>-->
+        <!-- maven plugins setting -->
+        <maven_deploy_skip>false</maven_deploy_skip>
+        <surefire.junit47.version>2.12</surefire.junit47.version>
+        <maven.war.plugin.directory>src/main/webapp/WEB-INF</maven.war.plugin.directory>
+        <maven.war.plugin.targetPath>WEB-INF</maven.war.plugin.targetPath>
+
+        <maven-source-plugin.version>3.1.0</maven-source-plugin.version>
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
+        <maven-jar-plugin.version>3.1.2</maven-jar-plugin.version>
+        <maven-deploy-plugin.version>3.0.0-M1</maven-deploy-plugin.version>
+        <exec-maven-plugin.version>1.6.0</exec-maven-plugin.version>
+        <build-helper-maven-plugin.version>3.0.0</build-helper-maven-plugin.version>
+        <versions-maven-plugin.version>2.7</versions-maven-plugin.version>
+
+        <!-- 私服仓库地址-->
+        <nexus_cii_public_url>http://nexus.gniuu.com/nexus/content/groups/public/</nexus_cii_public_url>
+        <nexus_aliyun_url>https://maven.aliyun.com/nexus/content/groups/public</nexus_aliyun_url>
         <nexus.deploy.snapshot.url>http://nexus.gniuu.com/nexus/content/repositories/snapshots/</nexus.deploy.snapshot.url>
         <nexus.deploy.release.url>http://nexus.gniuu.com/nexus/content/repositories/releases/</nexus.deploy.release.url>
+
+        <ciiframework.version>1.0-SNAPSHOT</ciiframework.version>
+        <!--Spring boot-->
+        <spring-boot-dependencies>2.1.0.RELEASE</spring-boot-dependencies>
+        <spring-cloud-dependencies.version>Greenwich.SR3</spring-cloud-dependencies.version>
+
+
+        <postgresql.version>42.1.1</postgresql.version>
+        <mysql.version>5.1.31</mysql.version>
+
+        <!-- Spring boot 与mybatis-->
+        <mybatis.version>3.4.6</mybatis.version>
+        <mybatis-spring.version>1.3.2</mybatis-spring.version>
+        <mybatis-spring-boot-starter>1.3.2</mybatis-spring-boot-starter>
+        <druid.version>1.1.10</druid.version>
+        <druid-spring-boot-starter>1.1.10</druid-spring-boot-starter>
+
+        <!-- druid 2017/05/14-->
+        <druid_version>1.1.8</druid_version>
+        <!--文件导出 2020/02/14 -->
+        <poi_version>4.1.2</poi_version>
+        <!-- 图片处理器-->
+        <thumbnailator>0.4.8</thumbnailator>
+        <commons-beanutils.version>1.9.3</commons-beanutils.version>
+        <!-- 密码组件-->
+        <jbcrypt.version>0.3m</jbcrypt.version>
+        <!-- google java 工具库-->
+        <guava.version>27.1-jre</guava.version>
+        <commons-io.version>2.6</commons-io.version>
+        <!-- 汉语拼音工具-->
+        <pinyin4j.version>2.5.0</pinyin4j.version>
+        <!--api文档-->
+        <swagger2.version>2.9.2</swagger2.version>
+        <!-- fastjson-->
+        <fastjson.version>1.2.56</fastjson.version>
+
+        <junit.version>4.13</junit.version>
+
     </properties>
 
     <repositories>
-        <!--<repository>
-            <id>wzitech_nexus</id>
-            <name>Team Nexus Repository</name>
-            <url>${nexus_content_public_url}</url>
-            <snapshots>
-                <updatePolicy>always</updatePolicy>
-            </snapshots>
-            <releases>
-                <updatePolidcy>always</updatePolicy>
-            </releases>
-        </repository>-->
-
         <repository>
-            <id>kupat_nexus</id>
+            <id>nexus-aliyun</id>
             <name>Team Nexus Repository</name>
-            <url>${nexus_kupat_public_url}</url>
+            <url>https://maven.aliyun.com/nexus/content/groups/public</url>
             <snapshots>
+                <enabled>false</enabled>
                 <updatePolicy>always</updatePolicy>
             </snapshots>
             <releases>
@@ -62,9 +101,35 @@
             </releases>
         </repository>
         <repository>
+            <id>rdc-releases</id>
+            <name>david cun aliyun release</name>
+            <url>https://packages.aliyun.com/maven/repository/2010604-release-fBP5h8/</url>
+            <snapshots>
+                <enabled>false</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+            <releases>
+                <updatePolicy>always</updatePolicy>
+            </releases>
+        </repository>
+
+        <repository>
+            <id>rdc-snapshots</id>
+            <name>david cun aliyun release</name>
+            <url>https://packages.aliyun.com/maven/repository/2010604-snapshot-Oq8r4y/</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </repository>
+
+        <repository>
             <id>central</id>
             <name>Maven Official Repository</name>
-            <url>http://repo1.maven.org/maven2</url>
+            <url>https://repo1.maven.org/maven2</url>
             <snapshots>
                 <enabled>false</enabled>
                 <updatePolicy>always</updatePolicy>
@@ -79,35 +144,379 @@
         <dependencies>
             <dependency>
                 <groupId>com.ciiframework</groupId>
-                <artifactId>cii-core</artifactId>
-                <version>${cii_version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.ciiframework</groupId>
                 <artifactId>cii-common</artifactId>
-                <version>${cii_version}</version>
+                <version>${ciiframework.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.ciiframework</groupId>
-                <artifactId>cii-user</artifactId>
-                <version>${cii_version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.ciiframework</groupId>
-                <artifactId>cii-file</artifactId>
-                <version>${cii_version}</version>
+                <artifactId>cii-core</artifactId>
+                <version>${ciiframework.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.ciiframework</groupId>
                 <artifactId>cii-dictionary</artifactId>
-                <version>${cii_version}</version>
+                <version>${ciiframework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ciiframework</groupId>
+                <artifactId>cii-file</artifactId>
+                <version>${ciiframework.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.ciiframework</groupId>
                 <artifactId>cii-log</artifactId>
-                <version>${cii_version}</version>
+                <version>${ciiframework.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.ciiframework</groupId>
+                <artifactId>cii-spring-boot-starter</artifactId>
+                <version>${ciiframework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ciiframework</groupId>
+                <artifactId>cii-user</artifactId>
+                <version>${ciiframework.version}</version>
+            </dependency>
+
+            <dependency>
+                <!-- Import dependency management from Spring Boot -->
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot-dependencies}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud-dependencies.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis</artifactId>
+                <version>${mybatis.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis-spring</artifactId>
+                <version>${mybatis-spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis-spring-boot-starter}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid-spring-boot-starter}</version>
+            </dependency>
+
+            <!-- excel -->
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi</artifactId>
+                <version>${poi_version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>commons-codec</groupId>
+                        <artifactId>commons-codec</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml</artifactId>
+                <version>${poi_version}</version>
+            </dependency>
+
+            <!--thumbnailator 图片处理器 -->
+            <dependency>
+                <groupId>net.coobird</groupId>
+                <artifactId>thumbnailator</artifactId>
+                <version>${thumbnailator}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-beanutils</groupId>
+                <artifactId>commons-beanutils</artifactId>
+                <version>${commons-beanutils.version}</version>
+            </dependency>
+
+            <!-- 加密组件-->
+            <dependency>
+                <groupId>org.mindrot</groupId>
+                <artifactId>jbcrypt</artifactId>
+                <version>${jbcrypt.version}</version>
+            </dependency>
+
+            <!-- google java 工具库-->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons-io.version}</version>
+            </dependency>
+
+            <!-- 汉语拼音工具 -->
+            <dependency>
+                <groupId>com.belerweb</groupId>
+                <artifactId>pinyin4j</artifactId>
+                <version>${pinyin4j.version}</version>
+            </dependency>
+
+            <!--Swagger-ui restful API文档-->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger2.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <!-- jetty插件,设定重载模式 -->
+                <plugin>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-maven-plugin</artifactId>
+                    <version>9.4.5.v20170502</version>
+                    <configuration>
+                        <systemProperties>
+                            <systemProperty>
+                                <name>spring.profiles.active</name>
+                                <value>dev</value>
+                            </systemProperty>
+                        </systemProperties>
+                        <!-- automatic -->
+                        <reload>manual</reload>
+                        <stopPort>9968</stopPort>
+                        <stopKey>foo</stopKey>
+                        <scanIntervalSeconds>1</scanIntervalSeconds>
+                        <useTestClasspath>true</useTestClasspath>
+                        <webAppConfig>
+                            <contextPath>/web</contextPath>
+                            <defaultsDescriptor>src/main/resources/webdefault.xml</defaultsDescriptor>
+                        </webAppConfig>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <!-- 上传源码 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>${maven-source-plugin.version}</version>
+                <configuration>
+                    <attach>true</attach>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- compiler插件, 设定JDK版本 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <!-- configuration:通常用于私有不开源的plugin,不能够详细了解plugin的内部工作原理，但使plugin满足的properties -->
+                    <source>${project.build.jdk.version}</source>
+                    <target>${project.build.jdk.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <!-- resource插件, 设定编码 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>${maven-resources-plugin.version}</version>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <nonFilteredFileExtensions>
+                        <nonFilteredFileExtension>p12</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>pem</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>pfx</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>jks</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>cer</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>cert</nonFilteredFileExtension>
+                    </nonFilteredFileExtensions>
+                </configuration>
+            </plugin>
+            <!-- jar相关插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${maven-jar-plugin.version}</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <!-- deploy插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>${maven-deploy-plugin.version}</version>
+                <configuration>
+                    <skip>${maven_deploy_skip}</skip>
+                </configuration>
+            </plugin>
+
+            <!-- exec java 插件 -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>${exec-maven-plugin.version}</version>
+            </plugin>
+            <!-- 增加更多的Source和Test Source目录插件 -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>${build-helper-maven-plugin.version}</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>${versions-maven-plugin.version}</version>
+            </plugin>
+
+            <!-- dependency插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+            </plugin>
+
+            <!-- ant插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+            </plugin>
+
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/resources</directory>
+                    </resource>
+                    <resource>
+                        <directory>src/main/env/dev</directory>
+                    </resource>
+                </resources>
+                <testResources>
+                    <testResource>
+                        <directory>src/test/resources</directory>
+                    </testResource>
+                </testResources>
+            </build>
+        </profile>
+        <profile>
+            <id>test</id>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/resources</directory>
+                    </resource>
+                    <resource>
+                        <directory>src/main/env/test</directory>
+                    </resource>
+                </resources>
+                <testResources>
+                    <testResource>
+                        <directory>src/test/resources</directory>
+                    </testResource>
+                </testResources>
+            </build>
+        </profile>
+        <profile>
+            <id>prd</id>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/resources</directory>
+                    </resource>
+                    <resource>
+                        <directory>src/main/env/prd</directory>
+                    </resource>
+                </resources>
+                <testResources>
+                    <testResource>
+                        <directory>src/test/resources</directory>
+                    </testResource>
+                </testResources>
+            </build>
+        </profile>
+        <profile>
+            <id>dp</id>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/resources</directory>
+                    </resource>
+                    <resource>
+                        <directory>src/main/env/dp</directory>
+                    </resource>
+                </resources>
+                <testResources>
+                    <testResource>
+                        <directory>src/test/resources</directory>
+                    </testResource>
+                </testResources>
+            </build>
+        </profile>
+    </profiles>
 
 </project>
